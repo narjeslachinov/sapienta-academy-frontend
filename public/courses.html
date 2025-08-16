@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sapienta</title>
+    <link rel="stylesheet" href="../src/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../src/swiper/swiper-bundle.min.css">
+    <link href="../dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="../src/css/font.css">
+</head>
+<body class="bg-light montserratFont text-base text-gray-700">
+    <!-- Sticky Navbar  -->
+    <header class="main-nav sticky top-0 z-50 w-full transition-all duration-500">
+        <div class="nav-inner w-full  bg-white bg-opacity-10  border border-white border-opacity-10 shadow-inner text-white rounded-b transition-all duration-300 ease-in-out">
+            <div class="flex justify-between items-center h-16 space-x-8 max-w-6xl mx-auto px-6 py-10">
+                <!-- desktop logo -->
+                <a href="./index.html" class="flex-1 text-xl font-bold logo-text"><img src="../src/imges/logo/sapieenta logo design-02.svg" class="w-32 mt-2 bg-white px-2 py-1 rounded-full" alt="logo"></a>
+                <!-- Desktop Menu -->
+                <div class="nav-menu hidden sm:flex items-center">
+                    <div class="relative  space-x-6">
+                        <a href="./courses.html" class="nav-link primary-light-hover">Courses</a>
+                        <a href="./about.html" class="nav-link primary-light-hover">About Us</a>
+                        <a href="./contactUs.html" class="nav-link primary-light-hover">Contact Us</a>
+                        <a href="./Research-Development.html" class="nav-link primary-light-hover">R&D</a> 
+                        <a href="./blog.html" class="nav-link primary-light-hover">Blog</a>    
+                    </div>
+                </div>
+                <!-- Login Button (Desktop) -->
+                <div class="">
+                <button onclick="openLoginModal()" href="#" class="login-btn flex items-center space-x-2 text-white  transition primary-light-hover">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>Login</span>
+                </button>
+                </div>
+                <!-- Toggle button for mobile -->
+                <button class="menu-toggle sm:hidden text-2xl z-40 relative p-4 ">
+                <i class="fa-solid fa-bars text-white primary-light-hover text-2xl  transition"></i>
+                </button>
+                <!-- Fullscreen Mobile Menu -->
+                <div class="nav-menu-mobile fixed inset-0 h-screen z-40  hidden transition-all duration-500 ease-in-out opacity-0 scale-95">
+                <button class="menu-close absolute top-6 right-6 text-3xl">
+                    <i class="fa-solid fa-xmark text-white text-2xl  transition primary-light-hover"></i>
+                </button>
+                <div class="flex flex-col items-center justify-center space-y-6 text-white text-xl pt-12 overflow-scroll">
+                    <a href="./index.html" class="text-xl font-bold logo-text"><img src="../src/imges/logo/sapieenta logo design-02.svg" class="w-32 bg-white p-2 rounded-lg mb-8" alt="logo"></a>
+                    <a href="./courses.html" class="nav-link primary-light-hover">Courses</a>
+                    <a href="./about.html" class="nav-link primary-light-hover">About Us</a>
+                    <a href="./contactUs.html" class="nav-link primary-light-hover">Contact Us</a>
+                    <a href="./Research-Development.html" class="nav-link primary-light-hover">R&D</a> 
+                    <a href="./blog.html" class="nav-link primary-light-hover">Blog</a> 
+                </div>
+                </div>
+            </div> 
+        </div>
+        <!-- Modal Overlay and Box -->
+        <div id="login-modal-overlay" class="login-modal-overlay hidden fixed inset-0   flex justify-center items-center z-50 bg-black  pointer-events-none transition-opacity duration-300">
+            <!-- Modal Box -->
+            <div id="login-modal-box" class="login-modal-box relative bg-white rounded-2xl shadow-2xl overflow-auto  px-6 py-8 flex flex-col gap-6  scale-95 opacity-0 transition-all duration-300 ">
+            <!-- Close Modal Button -->
+            <button type="button"
+                    class="login-modal-close absolute left-4 top-3   text-2xl focus:outline-none"
+                    aria-label="Close modal"
+                    onclick="closeLoginModal()">
+                <i class="fa-solid fa-xmark primary-light-hover"></i>
+            </button>
+            <div class="flex  justify-center">
+                <button id="StudentForm" class="primaryBtn text-white px-2 py-1 rounded-l-full">Student</button>
+                <button id="InstructorForm" class="selectedBarItem px-2 py-1 rounded-r-full">Instructor</button>
+            </div>
+            <div id="studentloginForm" class="loginModal">
+                <!-- Modal Header -->
+                <div class="login-modal-header text-center">
+                    <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Student Login</h2>
+                    <p class="secondaryTitle text-sm">For Sapienta student users</p>
+                </div>
+
+                <!-- Login Form -->
+                <form class="login-modal-form flex flex-col gap-5" autocomplete="on">
+                <!-- Email Field -->
+                <div class="login-field">
+                    <label for="login-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4  text-lg">
+                        <i class="fa-solid fa-envelope text-red-400"></i>
+                    </span>
+                    <input id="login-email" name="email" type="email" required dir="ltr"
+                        placeholder="Enter your email"
+                        class="input-email-login py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2 "/>
+                    </div>
+                </div>
+                <!-- Password Field -->
+                <div class="login-field">
+                    <label for="login-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                        <i class="fa-solid fa-lock"></i>
+                    </span>
+                    <input id="login-password" name="password" type="password" required
+                        placeholder="Enter your password"
+                        class="input-password-login  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                    <!-- Show/hide password (Eye) -->
+                    <button type="button"
+                            tabindex="-1"
+                            class="login-show-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                            data-toggle="password">
+                        <i  class="fa-solid fa-eye"></i>
+                    </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                    <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                    <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                    <span>Remember</span>
+                    </label>
+                    <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline  transition">Forgot your password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit"
+                    class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                    Login
+                </button>
+                </form>        
+            </div>
+            <div id="studentSignupForm" class="SignupModal hidden">
+                <!-- Modal Header -->
+                <div class=" Signup-modal-header text-center">
+                <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Student Registration</h2>
+                <p class="secondaryTitle text-sm">Create your Sapienta student account</p>
+                </div>
+
+                <!-- Signup Form -->
+                <form class="Signup-modal-form flex flex-col gap-5" autocomplete="on">
+                <!-- Full Name Field -->
+                <div class="signup-field">
+                    <label for="signup-name" class="block secondaryTitle font-semibold mb-2">Full Name</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4 text-lg">
+                        <i class="fa-solid fa-user text-green-400"></i>
+                    </span>
+                    <input id="signup-name" name="name" type="text" required dir="ltr"
+                        placeholder="Enter your full name"
+                        class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2"/>
+                    </div>
+                </div>
+                <!-- Email Field -->
+                <div class="Signup-field">
+                    <label for="Signup-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4  text-lg">
+                        <i class="fa-solid fa-envelope text-red-400"></i>
+                    </span>
+                    <input id="Signup-email" name="email" type="email" required dir="ltr"
+                        placeholder="Enter your email"
+                        class="input-email-Signup py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2 "/>
+                    </div>
+                </div>
+                <!-- Password Field -->
+                <div class="Signup-field">
+                    <label for="Signup-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                        <i class="fa-solid fa-lock"></i>
+                    </span>
+                    <input id="Signup-password" name="password" type="password" required
+                        placeholder="Enter your password"
+                        class="input-password-Signup  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                    <!-- Show/hide password (Eye) -->
+                    <button type="button"
+                            tabindex="-1"
+                            class="Signup-show-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                            data-toggle="password">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    </div>
+                </div>
+                <!--Confirm  Password Field -->
+                <div class="Signup-field">
+                    <label for="Signup-confirm-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                        <i class="fa-solid fa-lock"></i>
+                    </span>
+                    <input id="Signup-confirm-password" name="password" type="password" required
+                        placeholder="Enter your password"
+                        class="input-confirm-password-Signup  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                    <!-- Show/hide password (Eye) -->
+                    <button type="button"
+                            class="Signup-show-confirm-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                           data-toggle="password">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                    <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                    <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                    <span>Remember</span>
+                    </label>
+                    <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline  transition">Forgot your password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit"
+                    class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                    Signup
+                </button>
+                </form>        
+            </div>
+            <div id="instructorLoginForm" class="LoginModal hidden">
+                <div class="login-modal-header text-center">
+                    <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Instructor Login</h2>
+                    <p class="secondaryTitle text-sm">Access your instructor account</p>
+                </div>
+
+                <form class="login-modal-form flex flex-col gap-5" autocomplete="on">
+                    <div class="login-field">
+                        <label for="login-email-instructor" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-lg">
+                                <i class="fa-solid fa-envelope text-red-400"></i>
+                            </span>
+                            <input id="login-email-instructor" name="email" type="email" required dir="ltr"
+                                placeholder="Enter your email"
+                                class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                        </div>
+                    </div>
+
+                    <div class="login-field">
+                        <label for="login-password-instructor" class="block secondaryTitle font-semibold mb-2">Password</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input id="login-password-instructor" name="password" type="password" required
+                                placeholder="Enter your password"
+                                class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                            <button type="button" tabindex="-1"
+                                class="login-show-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                                data-toggle="password">
+                                <i  class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                        <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                            <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                            <span>Remember</span>
+                        </label>
+                        <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline transition">Forgot your password?</a>
+                    </div>
+
+                    <button type="submit"
+                        class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                        Login
+                    </button>
+                </form>
+            </div>
+            <div id="instructorSignupForm" class="SignupModal hidden">
+                <div class="Signup-modal-header text-center">
+                    <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Instructor Registration</h2>
+                    <p class="secondaryTitle text-sm">Create your Sapienta instructor account</p>
+                </div>
+
+                <form class="Signup-modal-form flex flex-col gap-5" autocomplete="on">
+                    <div class="signup-field">
+                        <label for="instructor-signup-name" class="block secondaryTitle font-semibold mb-2">Full Name</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-lg">
+                                <i class="fa-solid fa-user text-green-400"></i>
+                            </span>
+                            <input id="instructor-signup-name" name="name" type="text" required dir="ltr"
+                                placeholder="Enter your full name"
+                                class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                        </div>
+                    </div>
+
+                    <div class="Signup-field">
+                        <label for="instructor-signup-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-lg">
+                                <i class="fa-solid fa-envelope text-red-400"></i>
+                            </span>
+                            <input id="instructor-signup-email" name="email" type="email" required dir="ltr"
+                                placeholder="Enter your email"
+                                class="input-email-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                        </div>
+                    </div>
+
+                    <div class="Signup-field">
+                        <label for="instructor-signup-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input id="instructor-signup-password" name="password" type="password" required
+                                placeholder="Enter your password"
+                                class="input-password-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                            <button type="button" tabindex="-1"
+                                class="Signup-show-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                                data-toggle="password">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="Signup-field">
+                        <label for="instructor-signup-confirm-password" class="block secondaryTitle font-semibold mb-2">Confirm Password</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input id="instructor-signup-confirm-password" name="confirm-password" type="password" required
+                                placeholder="Confirm your password"
+                                class="input-confirm-password-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                            <button type="button" tabindex="-1"
+                                class="Signup-show-confirm-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                                data-toggle="password">
+                                <i  class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                        <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                            <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                            <span>Remember</span>
+                        </label>
+                        <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline transition">Forgot your password?</a>
+                    </div>
+
+                    <button type="submit"
+                        class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                        Signup
+                    </button>
+                </form>
+            </div>
+            <!-- OR Separator -->
+            <div class="login-separator flex items-center my-3 gap-3">
+                <div class="flex-1 border-b border-gray-200"></div>
+                <div class=" text-xs font-bold">Or continue</div>
+                <div class="flex-1 border-b border-gray-200"></div>
+            </div>
+
+            <!-- OAuth Login Buttons -->
+            <div class="login-oauth flex gap-4 flex-col sm:flex-row mt-2">
+                <button type="button"
+                class="login-btn-google flex-1 flex items-center gap-2 justify-center py-2 rounded-lg border border-gray-200 shadow-md text-gray-700 font-bold bg-white hover:bg-gray-50 hover:shadow-lg hover:scale-105 transition">
+                <img src="../src/imges/icon/google.png" class="w-8 h-8 ml-2 rounded-full" alt="Google">
+                <span>Continue with Google</span>
+                </button>
+                <button type="button"
+                class="login-btn-apple flex-1 flex items-center gap-2 justify-center py-2 rounded-lg border border-gray-200 shadow-md text-gray-700 font-bold bg-white hover:bg-gray-50 hover:shadow-lg hover:scale-105 transition">
+                <img src="../src/imges/icon/apple.jpg" class="w-8 h-8 ml-2 rounded-full" alt="Apple">
+                <span>Continue with Apple</span>
+                </button>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div id="authSwitchText" class="login-register text-center mt-4">
+                <span id="authSwitchLabel" class="text-gray-600 text-sm">
+                    Don't have an account?
+                    <button id="authSwitchBtn" class="text-primary-color font-bold underline transition">Sign up</button>
+                </span>
+            </div>
+
+
+            <!-- Security Notice -->
+            <div class="login-secure-note flex items-center gap-2 justify-center mt-2 text-xs ">
+                <i class="fa-solid fa-shield-halved text-primary-color text-base"></i>
+                <span>Your information is encrypted and secure</span>
+            </div>
+            </div>
+        </div>
+    </header> 
+    <main>
+        <!-- Hero Section -->
+        <section class="heroSection relative w-full h-screen overflow-hidden bg-gray-900 text-white -mt-20">
+            <!-- Background image or video -->
+            <img src="../src/imges/courses.webp" alt="Hero background" class=" inset-0 w-full h-full object-cover opacity-40 z-0">
+            <!-- Overlay content -->
+            <div class="absolute inset-0 z-10 flex flex-col justify-center items-center h-full text-center px-6">
+                <h1 class="text-3xl md:text-4xl font-extrabold mb-8 max-w-6xl">Courses at Sapinta</h1>
+                <p class="text-lg md:text-xl mb-4 max-w-6xl text-gray-100 font-bold">Begin Your Journey with Sapienta</p>
+                <p class="text-lg md:text-xl mb-8 max-w-6xl text-gray-100">
+                    Select from our curated courses designed to elevate your skills, deepen your knowledge, and empower your academic character.
+                </p>
+                <!-- CTA buttons -->
+                <div class="flex flex-col md:flex-row gap-4">
+                    <a href="#courses-cards" class="heroSectionBtn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                    View All Courses
+                    </a>
+                    <a href="./contactUs.html" class="heroSectionBtn HoverPrimaryBtn bgblueBtn bg-white bg-opacity-10  border border-white border-opacity-10 shadow-inner px-6 py-3 rounded-lg font-semibold transition">
+                    Need Help Choosing?
+                    </a>              
+                </div>
+            </div>
+        </section>
+        <!-- mobli filtering btn -->
+        <button class="fixed bottom-4 right-4 z-40 lg:hidden shadow-xl  text-white rounded-full w-16 h-16 flex items-center justify-center"
+            id="openMobileFilters">
+            <i class="fa-solid fa-sliders"></i>
+            <span class="sr-only">Filter</span>
+        </button>
+        <!-- Mobile Filter Backdrop and Panel -->
+        <div id="mobileFilterDrawer" class="fixed inset-0 z-50 bg-black bg-opacity-30 hidden">
+            <div class="mobileFilterDrawerContent overflow-y-auto absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl p-8 transition-all duration-300  w-full shadow-2xl">
+                <button class="mb-4 flex items-center gap-2 secondaryTitle font-bold" id="closeMobileFilters">
+                <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <!-- Place the same filter form used on desktop here -->
+                <div class="mobileFilterItems space-y-5">
+                    <div>
+                        <h3 class="mobileFilterItem font-semibold hover:shadow py-2 rounded text-lg  BlueTitle text-center ">
+                            Subject Area
+                            <i class="fa-solid fa-chevron-down transition-all duration-300 ease-in-out"></i>
+                        </h3>
+                        <div class="flex flex-wrap gap-3 p-5 border hidden transition rounded-b">
+                            <!-- All Courses -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm selectedFilteringTags">
+                            <i class="fa-solid fa-book-open  transition-all duration-300 ease-in-out"></i> 
+                            All Courses
+                            </button>
+                        
+                            <!-- Mathematics -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-square-root-variable transition-all duration-300 ease-in-out"></i>
+                            Mathematics
+                            </button>
+                        
+                            <!-- Physics -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-atom transition-all duration-300 ease-in-out"></i>
+                            Physics
+                            </button>
+                        
+                            <!-- Biology -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-dna transition-all duration-300 ease-in-out"></i>
+                            Biology
+                            </button>
+                        
+                            <!-- Chemistry -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-flask-vial transition-all duration-300 ease-in-out"></i>
+                            Chemistry
+                            </button>
+                        
+                            <!-- History -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-landmark transition-all duration-300 ease-in-out"></i>
+                            History
+                            </button>
+                        
+                            <!-- French -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-language transition-all duration-300 ease-in-out"></i>
+                            French
+                            </button>
+                        
+                            <!-- English -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-book-open-reader transition-all duration-300 ease-in-out"></i>
+                            English
+                            </button>
+                        
+                            <!-- Science -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-microscope transition-all duration-300 ease-in-out"></i>
+                            Science
+                            </button>
+                        
+                            <!-- Geography -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-globe-europe transition-all duration-300 ease-in-out"></i>
+                            Geography
+                            </button>
+                        
+                            <!-- Accounting -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-calculator transition-all duration-300 ease-in-out"></i>
+                            Accounting
+                            </button>
+                        
+                            <!-- Economics -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-chart-line transition-all duration-300 ease-in-out"></i>
+                            Economics
+                            </button>
+                        
+                            <!-- Business Student -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-briefcase transition-all duration-300 ease-in-out"></i>
+                            Business Student
+                            </button>
+                        
+                            <!-- Critical Thinking -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-brain transition-all duration-300 ease-in-out"></i>
+                            Critical Thinking
+                            </button>
+                        
+                            <!-- Philosophy -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-scale-balanced transition-all duration-300 ease-in-out"></i>
+                            Philosophy
+                            </button>
+                        
+                            <!-- Coding -->
+                            <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                            <i class="fa-solid fa-code transition-all duration-300 ease-in-out"></i>
+                            Coding
+                            </button>
+                        </div>                    
+                    </div>
+                    <div>
+                        <h3 class="mobileFilterItem font-semibold hover:shadow py-2 rounded text-lg  BlueTitle text-center">
+                            Grade Level
+                            <i class="fa-solid fa-chevron-down transition-all duration-300 ease-in-out"></i>
+                        </h3>
+                        <div class="flex flex-wrap gap-3 p-5 border hidden transition rounded-b">
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 selectedFilteringTags">
+                                All Grade Level
+                                <i class="fa-solid fa-circle-check  transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary1
+                                <i class="fa-solid fa-circle-check hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary2 
+                                <i class="fa-solid fa-circle-check  hidden  transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary3 
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary4 - SO
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary4 - CST 
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary4 - ST 
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                            Secondary5 - SO 
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                            Secondary5 - CST 
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary5 - ST 
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                            CEGEP 
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                            <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                University
+                                <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="mobileFilterItem font-semibold hover:shadow py-2 rounded text-lg  BlueTitle text-center">
+                            Course Entry
+                            <i class="fa-solid fa-chevron-down transition-all duration-300 ease-in-out"></i>
+                        </h3>
+                        <div class="flex flex-wrap gap-3 p-5 border hidden transition rounded-b">
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm selectedFilteringTags">
+                                    All Entry
+                                    <i class="fa-solid fa-calendar-days  transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    January
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                            <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                February
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                March
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                April
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                May                           
+                                <i class="fa-solid fa-calendar-days  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>           
+                            <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                June
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                July
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                August
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                September
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                October
+                                <i class="fa-solid fa-calendar-days  hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                November
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                December
+                                <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="mobileFilterItem font-semibold hover:shadow py-2 rounded text-lg  BlueTitle text-center">
+                        Contest Preparation
+                            <i class="fa-solid fa-chevron-down transition-all duration-300 ease-in-out"></i>
+                        </h3>
+                        <div class="flex flex-col gap-3 p-5 border hidden transition rounded-b">
+                            <!-- All Contests -->
+                            <button class=" contestPreparationBtn w-full px-3 py-1 rounded-xl  text-sm selectedFilteringTags"
+                                data-contest="all contests">
+                                <div class="flex items-center justify-center w-8 h-8  rounded-full mx-auto my-2 ">
+                                <i class="fa-solid fa-chalkboard-user text-sm transition-all duration-300 ease-in-out "></i>
+                                </div>
+                                All Contests
+                            </button>
+                            <!-- Contest 1 -->
+                            <button class=" contestPreparationBtn w-full px-3 py-1 rounded-xl  text-sm unselectedFilteringTags"
+                                        data-contest="waterloo">
+                                <div class="flex items-center justify-center w-8 h-8  rounded-full mx-auto my-2 ">
+                                <i class="fa-solid fa-chalkboard-user text-sm transition-all duration-300 ease-in-out "></i>
+                                </div>
+                                University of Waterloo Mathematics & Computing Contests
+                            </button>
+
+                            <!-- Contest 2 -->
+                            <button class=" contestPreparationBtn w-full px-3 py-1 rounded-xl  text-sm unselectedFilteringTags"
+                                data-contest="kangaroo">
+                                <div class="flex items-center justify-center w-8 h-8  rounded-full mx-auto my-2">
+                                <i class="fa-solid fa-children text-sm transition-all duration-300 ease-in-out"></i>
+                                </div>
+                                Canadian Math Kangaroo Contest
+                            </button>
+
+                            <!-- Contest 3 -->
+                            <button class=" contestPreparationBtn w-full px-3 py-1 rounded-xl  text-sm unselectedFilteringTags"
+                                data-contest="openchallenge">
+                                <div class="flex items-center justify-center w-8 h-8  rounded-full mx-auto my-2">
+                                <i class="fa-solid fa-medal text-sm transition-all duration-300 ease-in-out"></i>
+                                </div>
+                                Canadian Open Mathematics Challenge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Filter Panel -->
+        <section class="courses-filter-panel  bg-gray-100">
+            <div class="courses-filter-bar ">
+                <div class="hidden lg:flex flex-wrap gap-3 max-w-6xl mx-auto px-6 py-4 ">
+                    <!-- Subject Area -->
+                    <a href="#SubjectArea" class="filteringMobileItem flex items-center gap-2  px-4 py-2 rounded-lg  transition text-sm  shadow-sm unelectedBarItem">
+                    Subject Area
+                    </a>
+                    <!-- Grade Level  -->
+                    <a href="#LearningFormat" class="filteringMobileItem flex items-center gap-2  px-4 py-2 rounded-lg  transition text-sm  shadow-sm unelectedBarItem">
+                    Grade Level
+                    </a>
+                    <!-- Course Entry -->
+                    <a href="#CourseEntry" class="filteringMobileItem flex items-center gap-2  px-4 py-2 rounded-lg  transition text-sm  shadow-sm unelectedBarItem">
+                    Course Entry
+                    </a>
+                    <!-- Contest Preparation -->
+                    <a href="#ContesPtreparation" class="filteringMobileItem flex items-center gap-2  px-4 py-2 rounded-lg  transition text-sm shadow-sm unelectedBarItem">
+                    Contest Preparation
+                    </a>
+                </div>        
+            </div>
+            <div class="max-w-6xl mx-auto px-6 py-12">
+                <div class=" flex justify-between items-start gap-5">
+                    <!-- Sidebar Filter Panel -->
+                    <aside class="lg:w-1/4 hidden lg:inline sticky ">
+                        <!-- 1. Subject Area -->
+                        <div id="SubjectArea" class="mb-6 border  bg-white px-5 py-3 rounded-3xl scroll-marginTop1">
+                            <h3 class="text-xl font-semibold mb-2 flex items-center gap-2 BlueTitle"> Subject Area</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <!-- All Subject -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm selectedFilteringTags">
+                                <i class="fa-solid fa-book-open  transition-all duration-300 ease-in-out"></i> 
+                                All Subject
+                                </button>
+                            
+                                <!-- Mathematics -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-square-root-variable transition-all duration-300 ease-in-out"></i>
+                                Mathematics
+                                </button>
+                            
+                                <!-- Physics -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-atom transition-all duration-300 ease-in-out"></i>
+                                Physics
+                                </button>
+                            
+                                <!-- Biology -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-dna transition-all duration-300 ease-in-out"></i>
+                                Biology
+                                </button>
+                            
+                                <!-- Chemistry -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-flask-vial transition-all duration-300 ease-in-out"></i>
+                                Chemistry
+                                </button>
+                            
+                                <!-- History -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-landmark transition-all duration-300 ease-in-out"></i>
+                                History
+                                </button>
+                            
+                                <!-- French -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-language transition-all duration-300 ease-in-out"></i>
+                                French
+                                </button>
+                            
+                                <!-- English -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-book-open-reader transition-all duration-300 ease-in-out"></i>
+                                English
+                                </button>
+                            
+                                <!-- Science -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-microscope transition-all duration-300 ease-in-out"></i>
+                                Science
+                                </button>
+                            
+                                <!-- Geography -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-globe-europe transition-all duration-300 ease-in-out"></i>
+                                Geography
+                                </button>
+                            
+                                <!-- Accounting -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-calculator transition-all duration-300 ease-in-out"></i>
+                                Accounting
+                                </button>
+                            
+                                <!-- Economics -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-chart-line transition-all duration-300 ease-in-out"></i>
+                                Economics
+                                </button>
+                            
+                                <!-- Business Student -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-briefcase transition-all duration-300 ease-in-out"></i>
+                                Business Student
+                                </button>
+                            
+                                <!-- Critical Thinking -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-brain transition-all duration-300 ease-in-out"></i>
+                                Critical Thinking
+                                </button>
+                            
+                                <!-- Philosophy -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-scale-balanced transition-all duration-300 ease-in-out"></i>
+                                Philosophy
+                                </button>
+                            
+                                <!-- Coding -->
+                                <button class="subjectBtn flex items-center gap-2  px-4 py-2 rounded-full  transition text-sm  shadow-sm unselectedFilteringTags">
+                                <i class="fa-solid fa-code transition-all duration-300 ease-in-out"></i>
+                                Coding
+                                </button>
+                            </div>  
+                        </div>          
+                        <!-- Learning Format -->
+                        <div id="LearningFormat" class="mb-6  border  bg-white px-5 py-3 rounded-3xl scroll-marginTop1">
+                            <h3 class="text-xl font-semibold mb-2 flex items-center gap-2 BlueTitle"> Grade Level</h3>
+                            <div class="flex flex-col gap-2 justify-between items-center">
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 selectedFilteringTags">
+                                    All Grade Level
+                                    <i class="fa-solid fa-circle-check  transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                    Secondary1
+                                    <i class="fa-solid fa-circle-check hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                    Secondary2 
+                                    <i class="fa-solid fa-circle-check  hidden  transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                    Secondary3 
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                    Secondary4 - SO
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                    Secondary4 - CST 
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                    Secondary4 - ST 
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary5 - SO 
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                Secondary5 - CST 
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                    Secondary5 - ST 
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                CEGEP 
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="learningFormatBtn px-3 py-1 rounded-full text-sm w-full flex justify-between items-center py-2 px-4 unselectedFilteringTags">
+                                    University
+                                    <i class="fa-solid fa-circle-check  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Course Entry -->
+                        <div id="CourseEntry" class="mb-6  border  bg-white px-5 py-3 rounded-3xl scroll-marginTop1">
+                            <h3 class="text-xl font-semibold mb-2 flex items-center gap-2 BlueTitle"> Course Entry</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm selectedFilteringTags">
+                                    All Entry
+                                    <i class="fa-solid fa-calendar-days  transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    January
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    February
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    March
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    April
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    May                           
+                                    <i class="fa-solid fa-calendar-days  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>           
+                                <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    June
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    July
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    August
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    September
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    October
+                                    <i class="fa-solid fa-calendar-days  hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    November
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                                    <button class="courseEntryBtn px-3 py-1 rounded-full  text-sm unselectedFilteringTags">
+                                    December
+                                    <i class="fa-solid fa-calendar-days hidden transition-all duration-300 ease-in-out"></i>
+                                </button>
+                            </div>
+                        </div>            
+                        <!-- contest preparation -->
+                        <div id="ContesPtreparation" class="mb-6 border  bg-white px-5 py-3 rounded-3xl scroll-marginTop1">
+                            <h3 class="text-xl font-semibold mb-2 flex items-center gap-2 BlueTitle">
+                                Contest Preparation
+                            </h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <!-- All Contests -->
+                                    <button class=" contestPreparationBtn w-full px-3 py-1 rounded-xl  text-sm selectedFilteringTags"
+                                        data-contest="all contests">
+                                        <div class="flex items-center justify-center w-8 h-8  rounded-full mx-auto my-2 ">
+                                        <i class="fa-solid fa-chalkboard-user text-sm transition-all duration-300 ease-in-out "></i>
+                                        </div>
+                                        All Contests
+                                    </button>
+                                    <!-- Contest 1 -->
+                                    <button class=" contestPreparationBtn w-full px-3 py-1 rounded-xl  text-sm unselectedFilteringTags"
+                                                data-contest="waterloo">
+                                        <div class="flex items-center justify-center w-8 h-8  rounded-full mx-auto my-2 ">
+                                        <i class="fa-solid fa-chalkboard-user text-sm transition-all duration-300 ease-in-out "></i>
+                                        </div>
+                                        University of Waterloo Mathematics & Computing Contests
+                                    </button>
+
+                                    <!-- Contest 2 -->
+                                    <button class=" contestPreparationBtn w-full px-3 py-1 rounded-xl  text-sm unselectedFilteringTags"
+                                        data-contest="kangaroo">
+                                        <div class="flex items-center justify-center w-8 h-8  rounded-full mx-auto my-2">
+                                        <i class="fa-solid fa-children text-sm transition-all duration-300 ease-in-out"></i>
+                                        </div>
+                                        Canadian Math Kangaroo Contest
+                                    </button>
+
+                                    <!-- Contest 3 -->
+                                    <button class=" contestPreparationBtn w-full px-3 py-1 rounded-xl  text-sm unselectedFilteringTags"
+                                        data-contest="openchallenge">
+                                        <div class="flex items-center justify-center w-8 h-8  rounded-full mx-auto my-2">
+                                        <i class="fa-solid fa-medal text-sm transition-all duration-300 ease-in-out"></i>
+                                        </div>
+                                        Canadian Open Mathematics Challenge
+                                    </button>
+                                </div>
+                        </div>              
+                    </aside>
+                    <div id="courses-cards" class="courses-cards w-full lg:w-3/4 scroll-marginTop1">
+                        <div class="grid grid-cols-1 sm:grid-cols-2  gap-8">
+                            <!-- Course Card -->
+                            <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+                                data-subject="physics english"
+                                data-format="secondary1"
+                                data-entry="september"
+                                data-contest="kangaroo"> 
+                                
+                                <!-- Image Section with Category Badges -->
+                                <div class="course-image-wrapper relative">
+                                <img src="../src/imges/math.webp" alt="Course Image"
+                                    class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+                                
+                                <!-- Left Badge -->
+                                <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                                    <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                                    <i class="fa-solid fa-square-root-variable"></i> Mathematics
+                                    </span>
+                                </div>
+                            
+                                <!-- Right Badge -->
+                                <div class="badge badge-right absolute top-0 right-0 m-2">
+                                    <span class="badge-lang text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-red-100 text-red-500">
+                                    <i class="fa-solid fa-language"></i> English
+                                    </span>
+                                </div>
+                                </div>
+                            
+                                <!-- Course Content -->
+                                <div class="course-content p-4 text-sm">
+                                <!-- Title -->
+                                <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                                    Foundations of Algebra: Variables, Equations & Expressions
+                                </h3>
+                            
+                                <!-- Description -->
+                                <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4  text-justify mb-4 line-clamp-4 text-justify">
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                </p>
+                            
+                                <!-- Rating Section -->
+                                <div class="course-rating flex items-center mb-4">
+                                    <div class="stars text-yellow-400 flex space-x-1 text-sm">★ ★ ★ ★ ☆</div>
+                                    <span class="ml-2 text-sm text-gray-500">(4.3)</span>
+                                </div>
+                            
+                                <!-- Meta Info -->
+                                <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                                    8 Weeks
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                    Group
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                                    Beginner
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                                    Starts September
+                                    </div>
+                                </div>
+                            
+                                <!-- Call to Action Button -->
+                                <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">View Course</a>                            </div>
+                            </div>
+                            <!-- Course Card -->
+                            <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+                                data-subject="biology"
+                                data-format="secondary2"
+                                data-entry="july"
+                                data-contest="openchallenge">
+                            
+                                <!-- Image Section with Category Badges -->
+                                <div class="course-image-wrapper relative">
+                                <img src="../src/imges/math.webp" alt="Course Image"
+                                    class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+                                
+                                <!-- Left Badge -->
+                                <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                                    <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                                    <i class="fa-solid fa-square-root-variable"></i> Mathematics
+                                    </span>
+                                </div>
+                            
+                                <!-- Right Badge -->
+                                <div class="badge badge-right absolute top-0 right-0 m-2">
+                                    <span class="badge-lang text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-red-100 text-red-500">
+                                    <i class="fa-solid fa-language"></i> English
+                                    </span>
+                                </div>
+                                </div>
+                            
+                                <!-- Course Content -->
+                                <div class="course-content p-4 text-sm">
+                                <!-- Title -->
+                                <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                                    Foundations of Algebra: Variables, Equations & Expressions
+                                </h3>
+                            
+                                <!-- Description -->
+                                <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4  text-justify mb-4 line-clamp-4 text-justify">
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                </p>
+                            
+                                <!-- Rating Section -->
+                                <div class="course-rating flex items-center mb-4">
+                                    <div class="stars text-yellow-400 flex space-x-1 text-sm">★ ★ ★ ★ ☆</div>
+                                    <span class="ml-2 text-sm text-gray-500">(4.3)</span>
+                                </div>
+                            
+                                <!-- Meta Info -->
+                                <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                                    8 Weeks
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                    Group
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                                    Beginner
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                                    Starts September
+                                    </div>
+                                </div>
+                            
+                                <!-- Call to Action Button -->
+                                <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">View Course</a>                            </div>
+                            </div>
+                            <!-- Course Card -->
+                            <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"   
+                                data-subject="mathematics english"
+                                data-format="secondary1"
+                                data-entry="september"
+                                data-contest="waterloo">
+                            
+                                <!-- Image Section with Category Badges -->
+                                <div class="course-image-wrapper relative">
+                                <img src="../src/imges/math.webp" alt="Course Image"
+                                    class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+                                
+                                <!-- Left Badge -->
+                                <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                                    <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                                    <i class="fa-solid fa-square-root-variable"></i> Mathematics
+                                    </span>
+                                </div>
+                            
+                                <!-- Right Badge -->
+                                <div class="badge badge-right absolute top-0 right-0 m-2">
+                                    <span class="badge-lang text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-red-100 text-red-500">
+                                    <i class="fa-solid fa-language"></i> English
+                                    </span>
+                                </div>
+                                </div>
+                            
+                                <!-- Course Content -->
+                                <div class="course-content p-4 text-sm">
+                                <!-- Title -->
+                                <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                                    Foundations of Algebra: Variables, Equations & Expressions
+                                </h3>
+                            
+                                <!-- Description -->
+                                <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4  text-justify mb-4 line-clamp-4 text-justify">
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                </p>
+                            
+                                <!-- Rating Section -->
+                                <div class="course-rating flex items-center mb-4">
+                                    <div class="stars text-yellow-400 flex space-x-1 text-sm">★ ★ ★ ★ ☆</div>
+                                    <span class="ml-2 text-sm text-gray-500">(4.3)</span>
+                                </div>
+                            
+                                <!-- Meta Info -->
+                                <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                                    8 Weeks
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                    Group
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                                    Beginner
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                                    Starts September
+                                    </div>
+                                </div>
+                            
+                                <!-- Call to Action Button -->
+                                <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">View Course</a>                            </div>
+                            </div>
+                            <!-- Course Card -->
+                            <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+                                data-subject="chemistry science"
+                                data-format="secondary1"
+                                data-entry="march"
+                                data-contest="">
+                                <!-- Image Section with Category Badges -->
+                                <div class="course-image-wrapper relative">
+                                <img src="../src/imges/math.webp" alt="Course Image"
+                                    class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+                                
+                                <!-- Left Badge -->
+                                <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                                    <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                                    <i class="fa-solid fa-square-root-variable"></i> Mathematics
+                                    </span>
+                                </div>
+                            
+                                <!-- Right Badge -->
+                                <div class="badge badge-right absolute top-0 right-0 m-2">
+                                    <span class="badge-lang text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-red-100 text-red-500">
+                                    <i class="fa-solid fa-language"></i> English
+                                    </span>
+                                </div>
+                                </div>
+                            
+                                <!-- Course Content -->
+                                <div class="course-content p-4 text-sm">
+                                <!-- Title -->
+                                <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                                    Foundations of Algebra: Variables, Equations & Expressions
+                                </h3>
+                            
+                                <!-- Description -->
+                                <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4  text-justify mb-4 line-clamp-4 text-justify">
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                </p>
+                            
+                                <!-- Rating Section -->
+                                <div class="course-rating flex items-center mb-4">
+                                    <div class="stars text-yellow-400 flex space-x-1 text-sm">★ ★ ★ ★ ☆</div>
+                                    <span class="ml-2 text-sm text-gray-500">(4.3)</span>
+                                </div>
+                            
+                                <!-- Meta Info -->
+                                <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                                    8 Weeks
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                    Group
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                                    Beginner
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                                    Starts September
+                                    </div>
+                                </div>
+                            
+                                <!-- Call to Action Button -->
+                                <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">View Course</a>                            </div>
+                            </div>
+                            <!-- Course Card -->
+                            <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+                                        data-subject="philosophy criticalthinking"
+                                        data-format="secondary1"
+                                        data-entry="october"
+                                        data-contest="waterloo">
+                            
+                                <!-- Image Section with Category Badges -->
+                                <div class="course-image-wrapper relative">
+                                <img src="../src/imges/math.webp" alt="Course Image"
+                                    class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+                                
+                                <!-- Left Badge -->
+                                <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                                    <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                                    <i class="fa-solid fa-square-root-variable"></i> Mathematics
+                                    </span>
+                                </div>
+                            
+                                <!-- Right Badge -->
+                                <div class="badge badge-right absolute top-0 right-0 m-2">
+                                    <span class="badge-lang text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-red-100 text-red-500">
+                                    <i class="fa-solid fa-language"></i> English
+                                    </span>
+                                </div>
+                                </div>
+                            
+                                <!-- Course Content -->
+                                <div class="course-content p-4 text-sm">
+                                <!-- Title -->
+                                <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                                    Foundations of Algebra: Variables, Equations & Expressions
+                                </h3>
+                            
+                                <!-- Description -->
+                                <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4  text-justify mb-4 line-clamp-4 text-justify">
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                </p>
+                            
+                                <!-- Rating Section -->
+                                <div class="course-rating flex items-center mb-4">
+                                    <div class="stars text-yellow-400 flex space-x-1 text-sm">★ ★ ★ ★ ☆</div>
+                                    <span class="ml-2 text-sm text-gray-500">(4.3)</span>
+                                </div>
+                            
+                                <!-- Meta Info -->
+                                <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                                    8 Weeks
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                    Group
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                                    Beginner
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                                    Starts September
+                                    </div>
+                                </div>
+                            
+                                <!-- Call to Action Button -->
+                                <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">View Course</a>                            </div>
+                            </div>
+                            <!-- Course Card -->
+                            <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+                                data-subject="economics"
+                                data-format="secondary1"
+                                data-entry="may"
+                                data-contest="kangaroo">
+                            
+                                <!-- Image Section with Category Badges -->
+                                <div class="course-image-wrapper relative">
+                                <img src="../src/imges/math.webp" alt="Course Image"
+                                    class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+                                
+                                <!-- Left Badge -->
+                                <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                                    <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                                    <i class="fa-solid fa-square-root-variable"></i> Mathematics
+                                    </span>
+                                </div>
+                            
+                                <!-- Right Badge -->
+                                <div class="badge badge-right absolute top-0 right-0 m-2">
+                                    <span class="badge-lang text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-red-100 text-red-500">
+                                    <i class="fa-solid fa-language"></i> English
+                                    </span>
+                                </div>
+                                </div>
+                            
+                                <!-- Course Content -->
+                                <div class="course-content p-4 text-sm">
+                                <!-- Title -->
+                                <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                                    Foundations of Algebra: Variables, Equations & Expressions
+                                </h3>
+                            
+                                <!-- Description -->
+                                <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4  text-justify mb-4 line-clamp-4 text-justify">
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                </p>
+                            
+                                <!-- Rating Section -->
+                                <div class="course-rating flex items-center mb-4">
+                                    <div class="stars text-yellow-400 flex space-x-1 text-sm">★ ★ ★ ★ ☆</div>
+                                    <span class="ml-2 text-sm text-gray-500">(4.3)</span>
+                                </div>
+                            
+                                <!-- Meta Info -->
+                                <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                                    8 Weeks
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                    Group
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                                    Beginner
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                                    Starts September
+                                    </div>
+                                </div>
+                            
+                                <!-- Call to Action Button -->
+                                <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">View Course</a>                            </div>
+                            </div>
+                            <!-- Course Card -->
+                            <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+                                data-subject="geography"
+                                data-format="secondary1"
+                                data-entry="december"
+                                data-contest="openchallenge">
+                            
+                                <!-- Image Section with Category Badges -->
+                                <div class="course-image-wrapper relative">
+                                <img src="../src/imges/math.webp" alt="Course Image"
+                                    class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+                                
+                                <!-- Left Badge -->
+                                <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                                    <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                                    <i class="fa-solid fa-square-root-variable"></i> Mathematics
+                                    </span>
+                                </div>
+                            
+                                <!-- Right Badge -->
+                                <div class="badge badge-right absolute top-0 right-0 m-2">
+                                    <span class="badge-lang text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-red-100 text-red-500">
+                                    <i class="fa-solid fa-language"></i> English
+                                    </span>
+                                </div>
+                                </div>
+                            
+                                <!-- Course Content -->
+                                <div class="course-content p-4 text-sm">
+                                <!-- Title -->
+                                <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                                    Foundations of Algebra: Variables, Equations & Expressions
+                                </h3>
+                            
+                                <!-- Description -->
+                                <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4  text-justify mb-4 line-clamp-4 text-justify">
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                </p>
+                            
+                                <!-- Rating Section -->
+                                <div class="course-rating flex items-center mb-4">
+                                    <div class="stars text-yellow-400 flex space-x-1 text-sm">★ ★ ★ ★ ☆</div>
+                                    <span class="ml-2 text-sm text-gray-500">(4.3)</span>
+                                </div>
+                            
+                                <!-- Meta Info -->
+                                <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                                    8 Weeks
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                    Group
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                                    Beginner
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                                    Starts September
+                                    </div>
+                                </div>
+                            
+                                <!-- Call to Action Button -->
+                                <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">View Course</a>                            </div>
+                            </div>
+                            <!-- Course Card -->
+                            <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group">
+                            
+                                <!-- Image Section with Category Badges -->
+                                <div class="course-image-wrapper relative">
+                                <img src="../src/imges/math.webp" alt="Course Image"
+                                    class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+                                
+                                <!-- Left Badge -->
+                                <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                                    <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                                    <i class="fa-solid fa-square-root-variable"></i> Mathematics
+                                    </span>
+                                </div>
+                            
+                                <!-- Right Badge -->
+                                <div class="badge badge-right absolute top-0 right-0 m-2">
+                                    <span class="badge-lang text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-red-100 text-red-500">
+                                    <i class="fa-solid fa-language"></i> English
+                                    </span>
+                                </div>
+                                </div>
+                            
+                                <!-- Course Content -->
+                                <div class="course-content p-4 text-sm">
+                                <!-- Title -->
+                                <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                                    Foundations of Algebra: Variables, Equations & Expressions
+                                </h3>
+                            
+                                <!-- Description -->
+                                <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4  text-justify mb-4 line-clamp-4 text-justify">
+                                    Master the building blocks of algebra including solving equations, manipulating expressions, and understanding real-life applications in science and finance.
+                                </p>
+                            
+                                <!-- Rating Section -->
+                                <div class="course-rating flex items-center mb-4">
+                                    <div class="stars text-yellow-400 flex space-x-1 text-sm">★ ★ ★ ★ ☆</div>
+                                    <span class="ml-2 text-sm text-gray-500">(4.3)</span>
+                                </div>
+                            
+                                <!-- Meta Info -->
+                                <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                                    8 Weeks
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                    Group
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                                    Beginner
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                                    Starts September
+                                    </div>
+                                </div>
+                            
+                                <!-- Call to Action Button -->
+                                <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">View Course</a>                            </div>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+            </div>        
+        </section>
+        <!-- Competition Section -->
+        <section class="competition-section gradientBtn1 py-12 px-4 ">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold BlueTitle mb-4">Prepare for Top Math Competitions</h2>
+                <p class="secondaryTitle mb-10 ">Explore our preparation courses for world-class math contests.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Contest Card 1 -->
+                <div class="relative mt-16 pt-20 contest-card bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-transform hover:shadow-2xl ">
+                    <!-- Badge -->
+                    <span class="absolute top-2 right-2 bg-yellow-300 text-white text-xs px-2 py-1 rounded-full">Popular</span>
+                    <div class="absolute -top-16 w-32 h-32 rounded-full overflow-hidden bg-gray-300 ">
+                    <img src="../src/imges/cube-puzzle.webp" alt="Contributor Profile" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <h3 class="text-lg font-semibold BlueTitle mb-2 text-center">University of Waterloo<br>Math & Computing Contests</h3>
+                    <p class="text-xs text-gray-500 text-center mb-3">Grades 7–12 • Advanced Level</p>
+                    <!-- Date Info -->
+                    <p class="text-sm text-gray-600 mb-2 text-center"><strong>Next Exam:</strong> Nov 15, 2025</p>
+                    <!-- Description -->
+                    <p class="text-gray-600 text-sm mb-4 text-center">Challenge yourself with globally recognized math competitions.</p>
+                    <a href="#waterloo-courses" class="mt-auto BlueTitle text-white px-4 py-2 rounded-lg text-sm  transition-colors">More Info</a>
+                </div>
+
+                <!-- Contest Card 2 -->
+                <div class="relative mt-16 pt-20 contest-card bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-transform hover:shadow-2xl">
+                <!-- Badge -->
+                    <span class="absolute top-2 right-2 bg-yellow-300 text-white text-xs px-2 py-1 rounded-full">Popular</span>
+                    <div class="absolute -top-16 w-32 h-32 rounded-full overflow-hidden bg-gray-300 ">
+                    <img src="../src/imges/cube-puzzle.webp" alt="Contributor Profile" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <h3 class="text-lg font-semibold BlueTitle mb-2 text-center">Canadian Math<br>Kangaroo Contest</h3>
+                <p class="text-xs text-gray-500 text-center mb-3">Grades 7–12 • Advanced Level</p>
+                    <!-- Date Info -->
+                    <p class="text-sm text-gray-600 mb-2 text-center"><strong>Next Exam:</strong> Nov 15, 2025</p>
+                    <!-- Description -->
+                    <p class="text-gray-600 text-sm mb-4 text-center">Fun and engaging math contest for all age groups.</p>
+                    <a href="#kangaroo-courses" class="mt-auto BlueTitle text-white px-4 py-2 rounded-lg text-sm  transition-colors">View Courses</a>
+                </div>
+
+                <!-- Contest Card 3 -->
+                <div class="relative mt-16 pt-20 contest-card bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-transform hover:shadow-2xl">
+                    <span class="absolute top-2 right-2 bg-yellow-300 text-white text-xs px-2 py-1 rounded-full">Popular</span>
+                    <div class="absolute -top-16 w-32 h-32 rounded-full overflow-hidden bg-gray-300 ">
+                    <img src="../src/imges/cube-puzzle.webp" alt="Contributor Profile" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <h3 class="text-lg font-semibold BlueTitle mb-2 text-center">Canadian Open<br>Mathematics Challenge</h3>
+                        <p class="text-xs text-gray-500 text-center mb-3">Grades 7–12 • Advanced Level</p>
+                    <!-- Date Info -->
+                    <p class="text-sm text-gray-600 mb-2 text-center"><strong>Next Exam:</strong> Nov 15, 2025</p>
+                    <!-- Description -->
+                    <p class="text-gray-600 text-sm mb-4 text-center">Advanced-level competition for high school students.</p>
+                    <a href="#openchallenge-courses" class="mt-auto BlueTitle text-white px-4 py-2 rounded-lg text-sm  transition-colors ">View Courses</a>
+                </div>
+                </div>
+            </div>
+        </section>   
+        <!-- chat box btn -->
+        <button id="openDialoge" class="fixed bottom-4 left-4 z-40 shadow-xl rounded-full flex items-center justify-center bg-white">
+            <img src="../src/imges/logo/sapieenta logo design-03.svg" alt="" class="p-2  w-16 h-16">
+        </button>
+        <!-- chat box -->
+        <section id="chatBox" class="fixed top-0 sm:top-28 left-0 sm:left-16  rounded-lg w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 z-40 text-sm  z-50 hidden transition duration-700 overfow-hidden">
+            <section class=" relative h-full">
+                <div class="chatBoxHeader flex justify-between items-center py-2 px-4">
+                    <h3 class="text-white">
+                        Sapinto Educational Assistant
+                    </h3>
+                    <div id="closeDialoge" class="text-white scale1 transition text-xl">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                    </div>
+                </dv>
+                <div class="chatBoxBody no-scrollbar flex flex-col gap-4 absolute right-0 left-0 top-20 px-4 text-xs">
+                    <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">Hellow</div>
+                    <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellow    </div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellow    </div>
+                </div> 
+                <div class="chatBoxFooter w-full absolute bottom-0 left-0 rounded-md px-4 py-2 flex  gap-2 justify-between items-center z-50">
+                    <!-- send-->
+                    <button id="sendBtn" class="hidden cursor-pointer  text-lg">
+                        <i class="fa-solid fa-paper-plane text-blue-700"></i>
+                    </button>
+                    <div>
+                        <input type="file" id="file" class="file-upload hidden">
+                        <label  id="fileBtn" for="file" class="upload-label transition duration-300">
+                            <i class="fa-solid fa-paperclip cursor-pointer text-lg"></i>
+                        </label>
+                    </div>
+                    <input id="messageInput"  rows="1" placeholder="Type a message..." class="flex-1 w-full rounded p-1 border-none  focus:outline-none focus:ring-2">
+                    <button id="recordBtn" >
+                        <i class="fa-solid fa-microphone cursor-pointer  text-lg"></i>
+                    </button>
+                    
+                    <!-- timer -->
+                    <span id="timer" class="hidden flex-1 text-center">00:00</span>
+
+                    <!-- delete-->
+                    <button id="deleteBtn" class="hidden cursor-pointer  text-lg ">
+                        <i class="fa-solid fa-trash text-red-500"></i>
+                    </button>
+                </div>
+            </section>
+
+        </section> 
+    </main>
+    <!-- Footer -->
+    <footer class="footer bg-gray-100  text-gray-700  pt-16 pb-8">
+        <div class="footer-container max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+
+        <!-- Logo & Contact -->
+        <div class="footer-logo-contact">
+            <a href="#" class="footer-logo text-2xl font-bold text-sky-700 dark:text-sky-400">Sapienta</a>
+            <p class="footer-desc mt-4 text-sm leading-relaxed">
+            Empowering learning through expert-led courses and transformative research.
+            </p>
+            <p class="footer-email mt-4 text-sm">
+            <i class="fa-solid fa-envelope text-blue-600 mr-2"></i> contact@sapienta.com
+            </p>
+            <p class="footer-location text-sm">
+            <i class="fa-solid fa-location-dot text-red-500 mr-2"></i> Berlin, Germany
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-links">
+            <h4 class="footer-title text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="footer-list space-y-2">
+            <li><a href="./courses.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-graduation-cap text-purple-600 mr-2"></i>Courses</a></li>
+            <li><a href="./about.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-users text-green-600 mr-2"></i>About Us</a></li>
+            <li><a href="./contactUs.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-envelope-open-text text-blue-500 mr-2"></i>Contact</a></li>
+            <li><a href="./Research-Development.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-flask text-pink-500 mr-2"></i>Research</a></li>
+            <li><a href="./blog.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-blog text-yellow-500 mr-2"></i>Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-social">
+            <h4 class="footer-title text-lg font-semibold mb-4">Follow Us</h4>
+            <div class="social-icons flex space-x-4">
+            <a href="https://facebook.com" target="_blank" class="social-link hover: transition">
+                <i class="fab fa-facebook-f text-blue-600 text-lg"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="social-link hover: transition">
+                <i class="fab fa-twitter text-sky-400 text-lg"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-link hover: transition">
+                <i class="fab fa-linkedin-in text-blue-700 text-lg"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="social-link hover: transition">
+                <i class="fab fa-instagram text-pink-500 text-lg"></i>
+            </a>
+            </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="footer-newsletter">
+            <h4 class="footer-title text-lg font-semibold mb-4">Newsletter</h4>
+            <p class="newsletter-desc text-sm mb-4">Subscribe to stay updated with the latest courses and news.</p>
+            <form class="newsletter-form flex flex-col space-y-3">
+            <input type="email" placeholder="Your email" class="newsletter-input px-4 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+            <button type="submit" class="newsletter-button heroSectionBtn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                Subscribe
+            </button>
+            </form>
+        </div>
+
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom mt-12 text-center text-sm text-gray-500 dark:text-gray-500">
+        &copy; 2025 Sapienta. All rights reserved.
+        </div>
+    </footer>
+  <!-- Custom JS -->
+  <script src="../src/swiper/swiper-bundle.min.js"></script>
+  <script src="../src/js/main.js"></script>
+</body>
+</html>

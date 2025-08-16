@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sapienta</title>
+    <link rel="stylesheet" href="../src/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../src/swiper/swiper-bundle.min.css">
+    <link href="../dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="../src/css/font.css">
+</head>
+<body class="bg-light montserratFont text-base text-gray-700">
+    <!-- Sticky Navbar  -->
+    <header class="main-nav sticky top-0 z-50 w-full transition-all duration-500">
+        <div class="nav-inner w-full  bg-white bg-opacity-10  border border-white border-opacity-10 shadow-inner text-white rounded-b transition-all duration-300 ease-in-out">
+            <div class="flex justify-between items-center h-16 space-x-8 max-w-6xl mx-auto px-6 py-10">
+                <!-- desktop logo -->
+                <a href="./index.html" class="flex-1 text-xl font-bold logo-text"><img src="../src/imges/logo/sapieenta logo design-02.svg" class="w-32 mt-2 bg-white px-2 py-1 rounded-full" alt="logo"></a>
+                <!-- Desktop Menu -->
+                <div class="nav-menu hidden sm:flex items-center">
+                    <div class="relative  space-x-6">
+                        <a href="./courses.html" class="nav-link primary-light-hover">Courses</a>
+                        <a href="./about.html" class="nav-link primary-light-hover">About Us</a>
+                        <a href="./contactUs.html" class="nav-link primary-light-hover">Contact Us</a>
+                        <a href="./Research-Development.html" class="nav-link primary-light-hover">R&D</a> 
+                        <a href="./blog.html" class="nav-link primary-light-hover">Blog</a>    
+                    </div>
+                </div>
+                <!-- Login Button (Desktop) -->
+                <div class="">
+                <button onclick="openLoginModal()" href="#" class="login-btn flex items-center space-x-2 text-white  transition primary-light-hover">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>Login</span>
+                </button>
+                </div>
+                <!-- Toggle button for mobile -->
+                <button class="menu-toggle sm:hidden text-2xl z-40 relative p-4 ">
+                <i class="fa-solid fa-bars text-white primary-light-hover text-2xl  transition"></i>
+                </button>
+                <!-- Fullscreen Mobile Menu -->
+                <div class="nav-menu-mobile fixed inset-0 h-screen z-40  hidden transition-all duration-500 ease-in-out opacity-0 scale-95">
+                <button class="menu-close absolute top-6 right-6 text-3xl">
+                    <i class="fa-solid fa-xmark text-white text-2xl  transition primary-light-hover"></i>
+                </button>
+                <div class="flex flex-col items-center justify-center space-y-6 text-white text-xl pt-12 overflow-scroll">
+                    <a href="./index.html" class="text-xl font-bold logo-text"><img src="../src/imges/logo/sapieenta logo design-02.svg" class="w-32 bg-white p-2 rounded-lg mb-8" alt="logo"></a>
+                    <a href="./courses.html" class="nav-link primary-light-hover">Courses</a>
+                    <a href="./about.html" class="nav-link primary-light-hover">About Us</a>
+                    <a href="./contactUs.html" class="nav-link primary-light-hover">Contact Us</a>
+                    <a href="./Research-Development.html" class="nav-link primary-light-hover">R&D</a> 
+                    <a href="./blog.html" class="nav-link primary-light-hover">Blog</a> 
+                </div>
+                </div>
+            </div> 
+        </div>
+        <!-- Modal Overlay and Box -->
+        <div id="login-modal-overlay" class="login-modal-overlay hidden fixed inset-0   flex justify-center items-center z-50 bg-black  pointer-events-none transition-opacity duration-300">
+            <!-- Modal Box -->
+            <div id="login-modal-box" class="login-modal-box relative bg-white rounded-2xl shadow-2xl overflow-auto  px-6 py-8 flex flex-col gap-6  scale-95 opacity-0 transition-all duration-300 ">
+            <!-- Close Modal Button -->
+            <button type="button"
+                    class="login-modal-close absolute left-4 top-3   text-2xl focus:outline-none"
+                    aria-label="Close modal"
+                    onclick="closeLoginModal()">
+                <i class="fa-solid fa-xmark primary-light-hover"></i>
+            </button>
+            <div class="flex  justify-center">
+                <button id="StudentForm" class="primaryBtn text-white px-2 py-1 rounded-l-full">Student</button>
+                <button id="InstructorForm" class="selectedBarItem px-2 py-1 rounded-r-full">Instructor</button>
+            </div>
+            <div id="studentloginForm" class="loginModal">
+                <!-- Modal Header -->
+                <div class="login-modal-header text-center">
+                    <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Student Login</h2>
+                    <p class="secondaryTitle text-sm">For Sapienta student users</p>
+                </div>
+
+                <!-- Login Form -->
+                <form class="login-modal-form flex flex-col gap-5" autocomplete="on">
+                <!-- Email Field -->
+                <div class="login-field">
+                    <label for="login-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4  text-lg">
+                        <i class="fa-solid fa-envelope text-red-400"></i>
+                    </span>
+                    <input id="login-email" name="email" type="email" required dir="ltr"
+                        placeholder="Enter your email"
+                        class="input-email-login py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2 "/>
+                    </div>
+                </div>
+                <!-- Password Field -->
+                <div class="login-field">
+                    <label for="login-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                        <i class="fa-solid fa-lock"></i>
+                    </span>
+                    <input id="login-password" name="password" type="password" required
+                        placeholder="Enter your password"
+                        class="input-password-login  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                    <!-- Show/hide password (Eye) -->
+                    <button type="button"
+                            tabindex="-1"
+                            class="login-show-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                            data-toggle="password">
+                        <i  class="fa-solid fa-eye"></i>
+                    </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                    <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                    <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                    <span>Remember</span>
+                    </label>
+                    <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline  transition">Forgot your password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit"
+                    class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                    Login
+                </button>
+                </form>        
+            </div>
+            <div id="studentSignupForm" class="SignupModal hidden">
+                <!-- Modal Header -->
+                <div class=" Signup-modal-header text-center">
+                <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Student Registration</h2>
+                <p class="secondaryTitle text-sm">Create your Sapienta student account</p>
+                </div>
+
+                <!-- Signup Form -->
+                <form class="Signup-modal-form flex flex-col gap-5" autocomplete="on">
+                <!-- Full Name Field -->
+                <div class="signup-field">
+                    <label for="signup-name" class="block secondaryTitle font-semibold mb-2">Full Name</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4 text-lg">
+                        <i class="fa-solid fa-user text-green-400"></i>
+                    </span>
+                    <input id="signup-name" name="name" type="text" required dir="ltr"
+                        placeholder="Enter your full name"
+                        class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2"/>
+                    </div>
+                </div>
+                <!-- Email Field -->
+                <div class="Signup-field">
+                    <label for="Signup-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4  text-lg">
+                        <i class="fa-solid fa-envelope text-red-400"></i>
+                    </span>
+                    <input id="Signup-email" name="email" type="email" required dir="ltr"
+                        placeholder="Enter your email"
+                        class="input-email-Signup py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2 "/>
+                    </div>
+                </div>
+                <!-- Password Field -->
+                <div class="Signup-field">
+                    <label for="Signup-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                        <i class="fa-solid fa-lock"></i>
+                    </span>
+                    <input id="Signup-password" name="password" type="password" required
+                        placeholder="Enter your password"
+                        class="input-password-Signup  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                    <!-- Show/hide password (Eye) -->
+                    <button type="button"
+                            tabindex="-1"
+                            class="Signup-show-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                            data-toggle="password">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    </div>
+                </div>
+                <!--Confirm  Password Field -->
+                <div class="Signup-field">
+                    <label for="Signup-confirm-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                    <div class="relative rounded-lg shadow-sm">
+                    <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                        <i class="fa-solid fa-lock"></i>
+                    </span>
+                    <input id="Signup-confirm-password" name="password" type="password" required
+                        placeholder="Enter your password"
+                        class="input-confirm-password-Signup  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                    <!-- Show/hide password (Eye) -->
+                    <button type="button"
+                            class="Signup-show-confirm-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                           data-toggle="password">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                    <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                    <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                    <span>Remember</span>
+                    </label>
+                    <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline  transition">Forgot your password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit"
+                    class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                    Signup
+                </button>
+                </form>        
+            </div>
+            <div id="instructorLoginForm" class="LoginModal hidden">
+                <div class="login-modal-header text-center">
+                    <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Instructor Login</h2>
+                    <p class="secondaryTitle text-sm">Access your instructor account</p>
+                </div>
+
+                <form class="login-modal-form flex flex-col gap-5" autocomplete="on">
+                    <div class="login-field">
+                        <label for="login-email-instructor" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-lg">
+                                <i class="fa-solid fa-envelope text-red-400"></i>
+                            </span>
+                            <input id="login-email-instructor" name="email" type="email" required dir="ltr"
+                                placeholder="Enter your email"
+                                class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                        </div>
+                    </div>
+
+                    <div class="login-field">
+                        <label for="login-password-instructor" class="block secondaryTitle font-semibold mb-2">Password</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input id="login-password-instructor" name="password" type="password" required
+                                placeholder="Enter your password"
+                                class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                            <button type="button" tabindex="-1"
+                                class="login-show-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                                data-toggle="password">
+                                <i  class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                        <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                            <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                            <span>Remember</span>
+                        </label>
+                        <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline transition">Forgot your password?</a>
+                    </div>
+
+                    <button type="submit"
+                        class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                        Login
+                    </button>
+                </form>
+            </div>
+            <div id="instructorSignupForm" class="SignupModal hidden">
+                <div class="Signup-modal-header text-center">
+                    <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Instructor Registration</h2>
+                    <p class="secondaryTitle text-sm">Create your Sapienta instructor account</p>
+                </div>
+
+                <form class="Signup-modal-form flex flex-col gap-5" autocomplete="on">
+                    <div class="signup-field">
+                        <label for="instructor-signup-name" class="block secondaryTitle font-semibold mb-2">Full Name</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-lg">
+                                <i class="fa-solid fa-user text-green-400"></i>
+                            </span>
+                            <input id="instructor-signup-name" name="name" type="text" required dir="ltr"
+                                placeholder="Enter your full name"
+                                class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                        </div>
+                    </div>
+
+                    <div class="Signup-field">
+                        <label for="instructor-signup-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-lg">
+                                <i class="fa-solid fa-envelope text-red-400"></i>
+                            </span>
+                            <input id="instructor-signup-email" name="email" type="email" required dir="ltr"
+                                placeholder="Enter your email"
+                                class="input-email-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                        </div>
+                    </div>
+
+                    <div class="Signup-field">
+                        <label for="instructor-signup-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input id="instructor-signup-password" name="password" type="password" required
+                                placeholder="Enter your password"
+                                class="input-password-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                            <button type="button" tabindex="-1"
+                                class="Signup-show-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                                data-toggle="password">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="Signup-field">
+                        <label for="instructor-signup-confirm-password" class="block secondaryTitle font-semibold mb-2">Confirm Password</label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input id="instructor-signup-confirm-password" name="confirm-password" type="password" required
+                                placeholder="Confirm your password"
+                                class="input-confirm-password-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                            <button type="button" tabindex="-1"
+                                class="Signup-show-confirm-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                                data-toggle="password">
+                                <i  class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                        <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                            <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                            <span>Remember</span>
+                        </label>
+                        <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline transition">Forgot your password?</a>
+                    </div>
+
+                    <button type="submit"
+                        class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                        Signup
+                    </button>
+                </form>
+            </div>
+            <!-- OR Separator -->
+            <div class="login-separator flex items-center my-3 gap-3">
+                <div class="flex-1 border-b border-gray-200"></div>
+                <div class=" text-xs font-bold">Or continue</div>
+                <div class="flex-1 border-b border-gray-200"></div>
+            </div>
+
+            <!-- OAuth Login Buttons -->
+            <div class="login-oauth flex gap-4 flex-col sm:flex-row mt-2">
+                <button type="button"
+                class="login-btn-google flex-1 flex items-center gap-2 justify-center py-2 rounded-lg border border-gray-200 shadow-md text-gray-700 font-bold bg-white hover:bg-gray-50 hover:shadow-lg hover:scale-105 transition">
+                <img src="../src/imges/icon/google.png" class="w-8 h-8 ml-2 rounded-full" alt="Google">
+                <span>Continue with Google</span>
+                </button>
+                <button type="button"
+                class="login-btn-apple flex-1 flex items-center gap-2 justify-center py-2 rounded-lg border border-gray-200 shadow-md text-gray-700 font-bold bg-white hover:bg-gray-50 hover:shadow-lg hover:scale-105 transition">
+                <img src="../src/imges/icon/apple.jpg" class="w-8 h-8 ml-2 rounded-full" alt="Apple">
+                <span>Continue with Apple</span>
+                </button>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div id="authSwitchText" class="login-register text-center mt-4">
+                <span id="authSwitchLabel" class="text-gray-600 text-sm">
+                    Don't have an account?
+                    <button id="authSwitchBtn" class="text-primary-color font-bold underline transition">Sign up</button>
+                </span>
+            </div>
+
+
+            <!-- Security Notice -->
+            <div class="login-secure-note flex items-center gap-2 justify-center mt-2 text-xs ">
+                <i class="fa-solid fa-shield-halved text-primary-color text-base"></i>
+                <span>Your information is encrypted and secure</span>
+            </div>
+            </div>
+        </div>
+    </header> 
+    <main>
+        <!-- Blog Detail Hero Section -->
+        <section class="relative w-full h-screen overflow-hidden bg-gray-900 text-white -mt-20">
+            <!-- Background image -->
+            <img src="../src/imges/banner.webp" alt="Blog Detail Background" class="inset-0 w-full h-full object-cover opacity-40 z-0">
+            
+            <!-- Overlay content -->
+            <div class="absolute inset-0 z-10 flex flex-col justify-center items-center h-full text-center px-6">
+                <!-- Blog Title -->
+                <h1 class="text-3xl md:text-4xl font-extrabold mb-6 max-w-5xl leading-snug">
+                    5 Proven Strategies to Boost Your Math Skills and Confidence
+                </h1>
+                
+                <!-- Meta Info -->
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-200 mb-6">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-user text-blue-400"></i> John Doe
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-calendar text-purple-400"></i> August 1, 2025
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-tag text-green-400"></i> Study Tips
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-clock text-yellow-400"></i> 5 min read
+                    </div>
+                </div>
+
+                <!-- Short Description -->
+                <p class="text-lg md:text-xl mb-8 max-w-4xl text-gray-100">
+                    Discover effective, research-backed techniques to improve your mathematical thinking and develop a growth mindset toward learning.
+                </p>
+
+                <!-- CTA buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="./blog.html" class="heroSectionBtn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                        Back to Blog
+                    </a>
+                    <a href="#blogCommentsSection" class="heroSectionBtn HoverPrimaryBtn bgblueBtn bg-gray-50 hover:bg-gray-100 hover:shadow-md bg-opacity-10 border border-white border-opacity-10 shadow-inner px-6 py-3 rounded-lg font-semibold transition">
+                        Leave a Comment
+                    </a>              
+                </div>
+            </div>
+        </section>
+        <!-- blog section -->
+        <section class="blog-section">
+            <div class="max-w-6xl mx-auto px-6 py-12">
+                <div class=" flex flex-col lg:flex-row justify-between items-start gap-5">
+                    <div  class=" w-full lg:w-3/4 lg:order-2 ">
+                    <!-- Blog Article Content -->
+                    <article class=" lg:px-6 text-justify">
+                        <!-- Featured Image -->
+                        <img src="../src/imges/math.webp" alt="Featured Image" class="w-full h-96 rounded-xl shadow-md mb-8">
+                        <div class="space-y-6 border-b pb-5">
+                            <!-- Subheading -->
+                            <h2 class="text-lg md:text-xl lg:text-2xl font-bold  BlueTitle">1. Why We Forget Things We Just Learned — And How to Fix It</h2>
+                             <!-- Introduction Paragraph -->
+                            <p class="text-lg">
+                                We’ve all experienced learning something new and forgetting it hours later. This isn’t a personal failing — it’s how memory works. Understanding the forgetting curve and a few simple techniques can help bend it in your favor.                   
+                            </p>
+                            <!-- Meta Information -->
+                            <div class="flex flex-wrap gap-3 text-sm ">
+                                <span><i class="fa-solid fa-user text-red-500"></i> Author: <span class="font-medium">Sapienta R&D Team</span></span>
+                                <span><i class="fa-solid fa-calendar-days text-yellow-400"></i> Date: <span class="font-medium">[MM/DD/YYYY]</span></span>
+                                <span><i class="fa-solid fa-tags text-pink-400"></i> Tags: <span class="font-medium"> Memory, Learning Science, Study Strategies</span></span>
+                            </div>
+                            <!-- The Science of Forgetting -->
+                            <p class="leading-relaxed">
+                                You’ve probably had the experience: you learn something new — a formula, a word in another language, a fact for a history test — and then, only a few hours later, it’s gone. The blank space where that memory should be can be frustrating, especially when it happens after you felt confident about understanding it.
+                            </p>
+                            <p class="leading-relaxed">
+                                This isn’t a personal flaw. It’s simply how human memory works.
+                            </p>
+                            <h3 class="text-xl font-semibold secondaryTitle">The Science of Forgetting</h3>
+                            <p class="leading-relaxed">
+                                Over a century ago, psychologist Hermann Ebbinghaus conducted experiments on himself to measure how quickly information fades from memory. What he found became known as the <strong>forgetting curve</strong> — a steep drop in recall shortly after learning, followed by a slower decline over time.
+                            </p>
+                            <p class="leading-relaxed">
+                                The curve shows that most forgetting happens soon after we first encounter something. If we don’t revisit it, the brain treats it as unimportant and makes room for other information.
+                            </p>
+                        <!-- Why It Happens -->
+                            <h3 class="text-xl font-semibold secondaryTitle">Why It Happens:</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Lack of connections – Information is harder to remember if it’s not linked to something we already know.</li>
+                                <li>Low retrieval – If we never try to recall the information, the memory trace weakens.</li>
+                                <li>Cognitive overload – Learning too much at once can crowd out what was just learned.</li>
+                            </ul>
+
+                            <!-- How to Make Learning Stick -->
+                            <h3 class="text-xl font-semibold secondaryTitle">How to Make Learning Stick:</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Space it out – Revisit information over several days (spaced repetition).</li>
+                                <li>Test yourself – Try recalling without looking at notes (testing effect).</li>
+                                <li>Connect it – Link facts to real-life examples or prior knowledge.</li>
+                                <li>Sleep on it – Sleep consolidates memories.</li>
+                            </ul>
+                            <!-- Blockquote -->
+                            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 mb-6">
+                                "Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding." — William Paul Thurston
+                            </blockquote>
+                        </div>
+                        <div class="space-y-6 border-b pb-5">
+                            <!-- Subheading -->
+                            <h2 class="text-lg md:text-xl lg:text-2xl font-bold BlueTitle mt-4">2. Are We Teaching Students to Think, or Just to Answer?</h2>
+                            <!-- Introduction Paragraph -->
+                            <p class="text-lg">
+                                Correct answers are important, but do they always reflect true understanding? A closer look at how schools measure success reveals the risk of training students to answer, not think.
+                            </p>
+                            <!-- Meta Information -->
+                            <div class="flex flex-wrap gap-3 text-sm">
+                                <span><i class="fa-solid fa-user text-red-500"></i> Author: <span class="font-medium">Sapienta R&D Team</span></span>
+                                <span><i class="fa-solid fa-calendar-days text-yellow-400"></i> Date: <span class="font-medium">[MM/DD/YYYY]</span></span>
+                                <span><i class="fa-solid fa-tags text-pink-400"></i> Tags: <span class="font-medium">Critical Thinking, Education, Classroom Practice</span></span>
+                            </div>
+                            <p class="leading-relaxed">
+                                In most classrooms, questions have a clear right or wrong answer. Students learn to aim for correctness, and teachers are under pressure to measure that correctness through tests and grades. This makes sense on the surface — but it can shift learning toward giving the right answer quickly, rather than thinking deeply.
+                            </p>
+                            <!-- The Shift in Learning Goals -->
+                            <h3 class="text-xl font-semibold secondaryTitle">The Shift in Learning Goals</h3>
+                            <p class="leading-relaxed">
+                                When correctness becomes the main measure of success, students adapt by memorizing, following formulas, and predicting what’s “wanted” rather than exploring ideas. Cognitive science describes this as performance orientation (looking competent) versus mastery orientation (aiming to understand).
+                            </p>
+                            <!-- The Role of Questions -->
+                            <h3 class="text-xl font-semibold secondaryTitle">The Role of Questions</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>“What is the capital of France?” checks recall.</li>
+                                <li>“Why might a country choose a particular city as its capital?” opens geography, history, and politics.</li>
+                            </ul>
+                            <p class="leading-relaxed">The first has one endpoint; the second has many.</p>
+                            <!-- What Can Change -->
+                            <h3 class="text-xl font-semibold secondaryTitle">What Can Change</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Think-alouds – Explain reasoning before giving an answer.</li>
+                                <li>Open-ended prompts – Allow multiple valid responses.</li>
+                                <li>Error analysis – Use mistakes as learning tools.</li>
+                                <li>Deliberate wait time – Give space before answers.</li>
+                            </ul>
+                            <!-- Blockquote -->
+                            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 mb-6">
+                                Education that values both correctness and curiosity develops deeper thinkers.
+                            </blockquote>
+                        </div>
+                        <div class="space-y-6 border-b pb-5">
+                            <!-- Subheading -->
+                            <h2 class="text-lg md:text-xl lg:text-2xl font-bold BlueTitle mt-4">3. The Science of Confidence in Learning</h2>
+                            <!-- Introduction Paragraph -->
+                            <p class="text-lg">
+                                Confidence doesn’t just follow success — in learning, it can help create it. Self-efficacy, the belief in your own ability to make progress, shapes how you approach challenges and setbacks.
+                            </p>
+                            <!-- Meta Information -->
+                            <div class="flex flex-wrap gap-3 text-sm">
+                                <span><i class="fa-solid fa-user text-red-500"></i> Author: <span class="font-medium">Sapienta R&D Team</span></span>
+                                <span><i class="fa-solid fa-calendar-days text-yellow-400"></i> Date: <span class="font-medium">[MM/DD/YYYY]</span></span>
+                                <span><i class="fa-solid fa-tags text-pink-400"></i> Tags: <span class="font-medium">Motivation, Learning Science, Self-Efficacy</span></span>
+                            </div>
+                            <p class="leading-relaxed">
+                                We often think of confidence as something that follows success. In learning, however, confidence — or self-efficacy — can come first.
+                            </p>
+                            <!-- What Is Self-Efficacy -->
+                            <h3 class="text-xl font-semibold secondaryTitle">What Is Self-Efficacy?</h3>
+                            <p class="leading-relaxed">
+                                Coined by Albert Bandura, self-efficacy is the belief that your actions can lead to progress, even if it’s hard. Students with high self-efficacy take on challenges, persist, and recover from setbacks more effectively.
+                            </p>
+                            <!-- Why It Matters -->
+                            <h3 class="text-xl font-semibold secondaryTitle">Why It Matters</h3>
+                            <p class="leading-relaxed">
+                                Two equally skilled students can perform differently depending on their confidence. Low self-efficacy leads to avoidance; too much ungrounded confidence leads to under-preparation. The goal is accurate self-efficacy.
+                            </p>
+                            <!-- Building Genuine Confidence -->
+                            <h3 class="text-xl font-semibold secondaryTitle">Building Genuine Confidence</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Set achievable challenges – Hard enough to stretch ability.</li>
+                                <li>Highlight progress – Show improvement over time.</li>
+                                <li>Model persistence – Normalize effort and struggle.</li>
+                                <li>Encourage reflection – Let students see what works for them.</li>
+                            </ul>
+                            <!-- Blockquote -->
+                            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 mb-6">
+                                Confidence grows through repeated experiences where effort leads to improvement.
+                            </blockquote>
+                        </div>
+                        <div class="space-y-6 border-b pb-5">
+                            <!-- Subheading -->
+                            <h2 class="text-lg md:text-xl lg:text-2xl font-bold BlueTitle mt-4">4. The Secret Power of Asking the Right Kind of Question</h2>
+                            <!-- Introduction Paragraph -->
+                            <p class="text-lg">
+                                Not all questions are created equal. The way a question is framed can determine whether it leads to surface-level recall or deep, connected thinking.
+                            </p>
+                            <!-- Meta Information -->
+                            <div class="flex flex-wrap gap-3 text-sm">
+                                <span><i class="fa-solid fa-user text-red-500"></i> Author: <span class="font-medium">Sapienta R&D Team</span></span>
+                                <span><i class="fa-solid fa-calendar-days text-yellow-400"></i> Date: <span class="font-medium">[MM/DD/YYYY]</span></span>
+                                <span><i class="fa-solid fa-tags text-pink-400"></i> Tags: <span class="font-medium">Questioning, Critical Thinking, Teaching Strategies</span></span>
+                            </div>
+                             <p class="leading-relaxed">
+                                A well-placed question can do more than get a response — it can change the way someone thinks.
+                            </p>
+                            <!-- Why Question Design Matters -->
+                            <h3 class="text-xl font-semibold secondaryTitle">Why Question Design Matters</h3>
+                            <p class="leading-relaxed">
+                                Factual prompts narrow thinking; open prompts expand it.
+                            </p>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>“When did this event happen?” = recall.</li>
+                                <li>“What might have caused this event, and why do historians disagree?” = reasoning, perspective, and synthesis.</li>
+                            </ul>
+                            <!-- Types of Thinking Questions -->
+                            <h3 class="text-xl font-semibold secondaryTitle">Types of Thinking Questions</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Why/How Questions – Explore causes and mechanisms.</li>
+                                <li>Prediction Questions – Anticipate outcomes before revealing them.</li>
+                                <li>Perspective Questions – Invite multiple viewpoints.</li>
+                                <li>Connection Questions – Link new info to what’s already known.</li>
+                            </ul>
+                            <!-- Blockquote -->
+                            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 mb-6">
+                                The shape of a question shapes the depth of thought.
+                            </blockquote>
+                        </div>
+                        <div class="space-y-6 border-b pb-5">
+                            <!-- Subheading -->
+                            <h2 class="text-lg md:text-xl lg:text-2xl font-bold BlueTitle mt-4">5. The Hidden Cost of Always Multitasking While Studying</h2>
+                             <!-- Introduction Paragraph -->
+                            <p class="text-lg">
+                                Multitasking feels productive, but the brain is really just switching between tasks — and paying a price each time. Here’s what science says about focus and efficiency.
+                            </p>
+                            <!-- Meta Information -->
+                            <div class="flex flex-wrap gap-3 text-sm">
+                                <span><i class="fa-solid fa-user text-red-500"></i> Author: <span class="font-medium">Sapienta R&D Team</span></span>
+                                <span><i class="fa-solid fa-calendar-days text-yellow-400"></i> Date: <span class="font-medium">[MM/DD/YYYY]</span></span>
+                                <span><i class="fa-solid fa-tags text-pink-400"></i> Tags: <span class="font-medium">Attention, Study Skills, Focus</span></span>
+                            </div>
+                            <p class="leading-relaxed">
+                                Few study in silence anymore — notifications, music, and tabs are the norm. But real multitasking is rare.
+                            </p>
+                            <!-- The Myth of Multitasking -->
+                            <h3 class="text-xl font-semibold secondaryTitle">The Myth of Multitasking</h3>
+                            <p class="leading-relaxed">
+                                The brain doesn’t focus on two demanding tasks at once — it switches between them, costing time and accuracy.
+                            </p>
+                            <!-- Why It Matters -->
+                            <h3 class="text-xl font-semibold secondaryTitle">Why It Matters</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Shallow processing – Poor long-term retention.</li>
+                                <li>Slower work – Task switching adds time.</li>
+                                <li>Reduced comprehension – Background music with lyrics can hinder reading/problem-solving.</li>
+                            </ul>
+                            <!-- Making Focus Easier -->
+                            <h3 class="text-xl font-semibold secondaryTitle">Making Focus Easier</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Single-task study blocks – Short, focused periods.</li>
+                                <li>Control the environment – Minimize distractions.</li>
+                                <li>Mindful device use – Keep only what’s needed nearby.</li>
+                            </ul>
+                            <!-- Blockquote -->
+                            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 mb-6">
+                                Protecting focus time is one of the simplest ways to boost learning.
+                            </blockquote>
+                        </div>
+                        <div class="space-y-6 border-b pb-5">
+                            <!-- Subheading -->
+                            <h2 class="text-lg md:text-xl lg:text-2xl font-bold BlueTitle mt-4">6. Why Some Subjects Suddenly ‘Click’ After Months of Struggle</h2>
+                            <!-- Introduction Paragraph -->
+                            <p class="text-lg">
+                                Breakthrough moments in learning can feel sudden, but they’re often the result of slow, steady mental work happening behind the scenes.
+                            </p>
+                            <!-- Meta Information -->
+                            <div class="flex flex-wrap gap-3 text-sm">
+                                <span><i class="fa-solid fa-user text-red-500"></i> Author: <span class="font-medium">Sapienta R&D Team</span></span>
+                                <span><i class="fa-solid fa-calendar-days text-yellow-400"></i> Date: <span class="font-medium">[MM/DD/YYYY]</span></span>
+                                <span><i class="fa-solid fa-tags text-pink-400"></i> Tags: <span class="font-medium">Learning Process, Threshold Concepts, Persistence</span></span>
+                            </div>
+                             <p class="leading-relaxed">
+                                Sometimes, after weeks of confusion, a subject suddenly becomes clear.                            
+                            </p>
+                            <!-- What’s Happening -->
+                            <h3 class="text-xl font-semibold secondaryTitle">What’s Happening</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Prior knowledge – New learning connects to existing knowledge.</li>
+                                <li>Threshold concepts – Certain “gateway” ideas transform understanding.</li>
+                            </ul>
+                            <!-- The Role of Struggle -->
+                            <h3 class="text-xl font-semibold secondaryTitle">The Role of Struggle</h3>
+                            <p class="leading-relaxed">
+                                Even when “stuck,” the brain is forming partial links and organizing information for a breakthrough later.
+                            </p>
+                            <!-- Encouraging the Breakthrough -->
+                            <h3 class="text-xl font-semibold secondaryTitle">Encouraging the Breakthrough</h3>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                                <li>Revisit basics – Missing pieces might be earlier.</li>
+                                <li>Change approach – A different example can unlock understanding.</li>
+                                <li>Give it time – Spacing allows gradual connection-building.</li>
+                            </ul>
+                            <!-- Blockquote -->
+                            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 mb-6">
+                                Breakthroughs often come from slow buildup, not sudden genius.
+                            </blockquote>
+                        </div>
+
+                        <!-- Conclusion -->
+                        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 BlueTitle mt-4">Final Thoughts</h2>
+                        <p class="mb-6">
+                            Boosting your math skills takes time and effort, but with the right mindset and support, progress is inevitable. Embrace mistakes as learning opportunities, and never hesitate to seek help when needed.
+                        </p>
+                        <!-- End CTA -->
+                        <div class="bg-blue-50 p-6 rounded-xl border text-center selectedFilteringTags">
+                            <h3 class="text-xl font-bold mb-2">Need Help with Math?</h3>
+                            <p class="mb-4 text-gray-700">Book a free consultation with our expert tutors and start your personalized learning journey today.</p>
+                            <a href="./contactUs.html" class="primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">
+                                Book Free Consultation
+                            </a>
+                        </div>
+                        <!-- Social Share Section -->
+                        <section class="py-10 border-t border-b border-gray-200 mt-10">
+                            <h3 class="text-xl font-bold mb-4 BlueTitle">Share This Article</h3>
+                            <div class="flex space-x-4">
+                                <!-- Facebook -->
+                                <a href="#" class="flex items-center justify-center w-10 h-10 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition transform hover:scale-110">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <!-- Twitter/X -->
+                                <a href="#" class="flex items-center justify-center w-10 h-10 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition transform hover:scale-110">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <!-- LinkedIn -->
+                                <a href="#" class="flex items-center justify-center w-10 h-10 bg-blue-800 text-white rounded-full hover:bg-blue-900 transition transform hover:scale-110">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <!-- Copy Link -->
+                                <button onclick="copyArticleLink()" class="flex items-center justify-center w-10 h-10 bg-gray-600 text-white rounded-full hover:bg-gray-700 transition transform hover:scale-110">
+                                    <i class="fa-solid fa-link"></i>
+                                </button>
+                            </div>
+                        </section>
+                        <!-- Author Box -->
+                        <section class="mt-5">
+                            <h3 class="text-xl font-bold mb-4 BlueTitle">Author</h3>
+                            <div class=" px-6 py-10 flex flex-col md:flex-row items-center space-x-6 bg-gray-50 rounded-xl shadow-md">
+                                <!-- Author Image -->
+                                <img src="../src/imges/profile.webp" alt="Author John Doe" class="w-20 h-20 rounded-full object-cover shadow-lg scale1">
+                                <!-- Author Info -->
+                                <div>
+                                    <h4 class="text-lg font-bold BlueTitle mb-1">John Doe</h4>
+                                    <p class="text-sm text-gray-600 mb-2">
+                                    John is an experienced math educator passionate about helping students build confidence and master core concepts through personalized learning strategies.
+                                    </p>     
+                                    <!-- Social Icons -->
+                                    <div class="flex space-x-3 text-gray-500">
+                                    <a href="#" class="hover:text-blue-600 transition"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="hover:text-blue-700 transition"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="hover:text-gray-700 transition"><i class="fab fa-github"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>    
+                        <!-- Comments Section -->
+                        <section id="blogCommentsSection" class="max-w-4xl mx-auto py-5 border-t border-gray-200 mt-10 scroll-marginTop1" >
+                            <!-- Title -->
+                            <h3 class="text-xl font-bold mb-4 BlueTitle">Comments</h3>
+                            <div class="flex justify-start gap-2 flex-wrap secondaryTitle mb-4">
+                                <div>
+                                    <i class="fa-solid fa-user"></i>
+                                    You must login or register to post a comment.
+                                </div>
+                                <div class="">
+                                    <button onclick="openLoginModal()" href="#" class=" flex items-center space-x-2 ">
+                                        <i class="fa-solid fa-right-to-bracket"></i>
+                                        <span>Login</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Previous Comments -->
+                            <div class="space-y-6 mb-10 ">
+                                <!-- Single Comment -->
+                                <div class=" p-4 rounded-lg shadow-sm selectedFilteringTags">
+                                    <div class="flex items-start gap-4">
+                                        <img src="../src/imges/profile.webp" alt="User" class="w-10 h-10 rounded-full object-cover">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-center mb-1">
+                                                <h4 class="font-semibold">Alice Smith</h4>
+                                                <span class="text-xs text-gray-400">August 1, 2025</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mb-2">
+                                                Great article! I especially liked the part about visualizing math problems.
+                                            </p>
+                                            <button class="text-sm text-blue-600 hover:underline reply-btn">Reply</button>
+                                        
+                                            <!-- Reply Form (Hidden by Default) -->
+                                            <div class="mt-3 hidden reply-form">
+                                                <textarea class="w-full border rounded p-2 text-sm mb-2" rows="2" placeholder="Write your reply..."></textarea>
+                                                <button class="primaryBtn HoverPrimaryBtn text-white px-4 py-1 rounded text-sm">Submit Reply</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Example of Threaded Reply -->
+                                <div class="ml-10 bg-gray-50 p-4 rounded-lg shadow-sm">
+                                <div class="flex items-start gap-4">
+                                    <img src="../src/imges/profile.webp" alt="User" class="w-10 h-10 rounded-full object-cover">
+                                    <div class="flex-1">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <h4 class="font-semibold text-gray-700">John Doe</h4>
+                                        <span class="text-xs text-gray-400">August 2, 2025</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-2">
+                                        I agree! Visual tools make learning much easier and fun.
+                                    </p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- Comment Form -->
+                            <h4 class="text-lg font-semibold mb-4 BlueTitle">Leave a Comment</h4>
+                            <form class="space-y-4 selectedFilteringTags p-4">
+                                <div class="flex flex-col md:flex-row gap-4">
+                                <input type="text" placeholder="Your Name" required class="flex-1 border rounded p-2 border border-gray-300 text-sm mb-4 focus:outline-none focus:ring-2 " />
+                                <input type="email" placeholder="Your Email" required class="flex-1 border rounded p-2 border border-gray-300 text-sm mb-4 focus:outline-none focus:ring-2 " />
+                                </div>
+                                <textarea rows="4" placeholder="Your Comment..." required class="w-full  border rounded p-2 border border-gray-300 text-sm mb-4 focus:outline-none focus:ring-2 "></textarea>
+
+                                <!-- Simple CAPTCHA -->
+                                <div class="flex items-center gap-2">
+                                <input type="checkbox" id="captcha" required>
+                                <label for="captcha" class="text-sm text-gray-600">I am not a robot</label>
+                                </div>
+
+                                <button type="submit" class="primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded font-semibold transition">
+                                Post Comment
+                                </button>
+                            </form>
+                        </section>             
+                    </article>
+                    </div>     
+                    <!-- Sidebar  -->
+                    <aside class="lg:w-1/4">
+                        <!-- Search Box -->
+                        <div id="SearchBlog" class="mb-6 border bg-gray-50 hover:bg-gray-100 hover:shadow-md px-5 py-3 rounded-3xl  scroll-marginTop1">
+                            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2 BlueTitle">
+                                Search Blog
+                            </h3>
+                            <div class="relative">
+                                <input type="text" placeholder="Search articles..." class="w-full border border-gray-300 rounded-full py-2 px-4 pr-10 text-sm focus:outline-none focus:ring-2 ">
+                                <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                        </div>
+                        <!-- Popular Posts -->
+                        <div  id="PopularPosts" class="PopularPosts mb-6 border bg-gray-50 hover:bg-gray-100 hover:shadow-md px-5 py-3 rounded-3xl  scroll-marginTop1">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2 BlueTitle">
+                            Popular Posts
+                        </h3>
+                        <ul class="space-y-3 text-sm ">
+                            <li>
+                                <a href="./blog-detail.html" class="PopularPost py-2 transition">
+                                    <div class="flex items-center justify-between gap-3 border-b ">
+                                        <div class="w-1/4">
+                                            <img src="../src/imges/math.webp" alt="" class="rounded w-full h-24 h-24 lg:h-10">
+                                        </div>
+                                        <div class="w-3/4"> 
+                                            <div class="flex items-center gap-2 text-xs text-gray-400">
+                                                <i class="fa-solid fa-calendar text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                                August 1, 2025
+                                            </div>  
+                                            <div class="PopularPostTitle line-clamp-2 pt-2">
+                                                How to Improve Focus While Studying                                            
+                                                How to Improve Focus While Studying                                            
+                                                How to Improve Focus While Studying                                            
+                                                How to Improve Focus While Studying                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./blog-detail.html" class="PopularPost py-2 transition">
+                                    <div class="flex items-center justify-between gap-3 border-b ">
+                                        <div class="w-1/4">
+                                            <img src="../src/imges/math.webp" alt="" class="rounded w-full h-24 lg:h-10">
+                                        </div>
+                                        <div class="w-3/4"> 
+                                            <div class="flex items-center gap-2 text-xs text-gray-400">
+                                                <i class="fa-solid fa-calendar text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                                August 1, 2025
+                                            </div>  
+                                            <div class="PopularPostTitle line-clamp-2 pt-2">
+                                                7 Common Math Mistakes and How to Avoid Them                                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./blog-detail.html" class="PopularPost py-2 transition">
+                                    <div class="flex items-center justify-between gap-3 border-b ">
+                                        <div class="w-1/4">
+                                            <img src="../src/imges/math.webp" alt="" class="rounded w-full h-24 lg:h-10">
+                                        </div>
+                                        <div class="w-3/4"> 
+                                            <div class="flex items-center gap-2 text-xs text-gray-400">
+                                                <i class="fa-solid fa-calendar text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                                August 1, 2025
+                                            </div>  
+                                            <div class="PopularPostTitle line-clamp-2 pt-2">
+                                            Top Science Apps Every Student Should Try                                             
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./blog-detail.html" class="PopularPost py-2 transition">
+                                    <div class="flex items-center justify-between gap-3 border-b ">
+                                        <div class="w-1/4">
+                                            <img src="../src/imges/math.webp" alt="" class="rounded w-full h-24 lg:h-10">
+                                        </div>
+                                        <div class="w-3/4"> 
+                                            <div class="flex items-center gap-2 text-xs text-gray-400">
+                                                <i class="fa-solid fa-calendar text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                                August 1, 2025
+                                            </div>  
+                                            <div class="PopularPostTitle line-clamp-2 pt-2">
+                                                How to Improve Focus While Studying                                            
+                                                How to Improve Focus While Studying                                            
+                                                How to Improve Focus While Studying                                            
+                                                How to Improve Focus While Studying                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./blog-detail.html" class="PopularPost py-2 transition">
+                                    <div class="flex items-center justify-between gap-3 border-b ">
+                                        <div class="w-1/4">
+                                            <img src="../src/imges/math.webp" alt="" class="rounded w-full h-24 lg:h-10">
+                                        </div>
+                                        <div class="w-3/4"> 
+                                            <div class="flex items-center gap-2 text-xs text-gray-400">
+                                                <i class="fa-solid fa-calendar text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                                August 1, 2025
+                                            </div>  
+                                            <div class="PopularPostTitle line-clamp-2 pt-2">
+                                                7 Common Math Mistakes and How to Avoid Them                                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./blog-detail.html" class="PopularPost py-2 transition">
+                                    <div class="flex items-center justify-between gap-3 border-b ">
+                                        <div class="w-1/4">
+                                            <img src="../src/imges/math.webp" alt="" class="rounded w-full h-24 lg:h-10">
+                                        </div>
+                                        <div class="w-3/4"> 
+                                            <div class="flex items-center gap-2 text-xs text-gray-400">
+                                                <i class="fa-solid fa-calendar text-purple-600 transition-all duration-300 ease-in-out"></i>
+                                                August 1, 2025
+                                            </div>  
+                                            <div class="PopularPostTitle line-clamp-2 pt-2">
+                                            Top Science Apps Every Student Should Try                                             
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                        </div>
+                        <!-- Blog Categories -->
+                        <div  id="BlogCategories" class="BlogCategories mb-6 border bg-gray-50 hover:bg-gray-100 hover:shadow-md px-5 py-3 rounded-3xl  scroll-marginTop1">
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2 BlueTitle">
+                            Blog Categories
+                        </h3>
+                        <div class="flex flex-col items-start gap-2">
+                            <button class="categoriesItem px-3 py-1 text-sm transition border-b w-full text-left">
+                                Study Tips
+                            </button>
+                            <button class="categoriesItem px-3 py-1 text-sm transition border-b w-full text-left">
+                                Science
+                            </button>
+                            <button class="categoriesItem px-3 py-1 text-sm transition border-b w-full text-left">
+                                AI & Learning
+                            </button>
+                            <button class="categoriesItem px-3 py-1 text-sm transition border-b w-full text-left">
+                                Motivation
+                            </button>
+                            <button class="categoriesItem px-3 py-1 text-sm transition w-full text-left">
+                                Languages
+                            </button>
+                        </div>
+                        </div>
+                        <!-- Tags Cloud -->
+                        <div  id="TagsCloud" class="mb-6 border bg-gray-50 hover:bg-gray-100 hover:shadow-md px-5 py-3 rounded-3xl  scroll-marginTop1">
+                            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2 BlueTitle">
+                            Tags Cloud
+                            </h3>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                            <a href="#" class="px-2 py-1 bg-red-500 rounded-full hover:bg-red-800 transition text-white">Study</a>
+                            <a href="#" class="px-2 py-1 bg-yellow-500 rounded-full hover:bg-yellow-800 transition text-white">Science</a>
+                            <a href="#" class="px-2 py-1 bg-purple-500 rounded-full hover:bg-purple-800 transition text-white">Motivation</a>
+                            <a href="#" class="px-2 py-1 bg-pink-500 rounded-full hover:bg-pink-800 transition text-white">Math</a>
+                            <a href="#" class="px-2 py-1 bg-blue-500 rounded-full hover:bg-blue-800 transition text-white">AI</a>
+                            </div>
+                        </div>
+                        <!-- Reading Time Filter -->
+                        <div  id="ReadingTimeFilter" class="mb-6 border bg-gray-50 hover:bg-gray-100 hover:shadow-md px-5 py-3 rounded-3xl  scroll-marginTop1">
+                            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2 BlueTitle">
+                            Filter by Reading Time
+                            </h3>
+                            <div class="flex flex-col gap-2">
+                            <button class="w-full text-left text-sm px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition">Under 5 min</button>
+                            <button class="w-full text-left text-sm px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition">5–10 min</button>
+                            <button class="w-full text-left text-sm px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition">10+ min</button>
+                            </div>
+                        </div>
+                        <!-- Newsletter Signup -->
+                        <div  id="NewsletterSignup" class="mb-6 border bg-gray-50 hover:bg-gray-100 hover:shadow-md px-5 py-3 rounded-3xl  scroll-marginTop1">
+                            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2 BlueTitle">
+                                Join Our Newsletter
+                            </h3>
+                            <p class="text-sm text-justify mb-3">
+                                Get the latest articles, study tips, and course updates delivered straight to your inbox.
+                            </p>
+                            <input type="email" placeholder="Enter your email" class="w-full border border-gray-300 rounded-full py-2 px-4 text-sm mb-4 focus:outline-none focus:ring-2 ">
+                            <button class="primaryBtn HoverPrimaryBtn text-white px-4 py-1 rounded-lg font-semibold transition ">
+                                Subscribe
+                            </button>
+                        </div>
+                        <!-- Ask DiaLogos -->
+                        <div  id="AskDiaLogos" class="mb-6 border bg-gray-50 hover:bg-gray-100 hover:shadow-md px-5 py-3 rounded-3xl scroll-marginTop1">
+                            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2 BlueTitle">
+                            Ask DiaLogos
+                            </h3>
+                            <p class="text-sm text-gray-700 mb-3">
+                            Need help finding content? Ask our AI assistant!
+                            </p>
+                            <button class="primaryBtn HoverPrimaryBtn text-white px-4 py-1 rounded-full font-semibold transition w-full">
+                            Chat Now
+                            </button>
+                        </div> 
+                    </aside>           
+                </div>
+            </div>        
+        </section>   
+        <!-- chat box btn -->
+        <button id="openDialoge" class="fixed bottom-4 left-4 z-40 shadow-xl rounded-full flex items-center justify-center bg-white">
+            <img src="../src/imges/logo/sapieenta logo design-03.svg" alt="" class="p-2  w-16 h-16">
+        </button>
+        <!-- chat box -->
+        <section id="chatBox" class="fixed top-0 sm:top-28 left-0 sm:left-16  rounded-lg w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 z-40 text-sm  z-50 hidden transition duration-700 overfow-hidden">
+            <section class=" relative h-full">
+                <div class="chatBoxHeader flex justify-between items-center py-2 px-4">
+                    <h3 class="text-white">
+                        Sapinto Educational Assistant
+                    </h3>
+                    <div id="closeDialoge" class="text-white scale1 transition text-xl">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                    </div>
+                </dv>
+                <div class="chatBoxBody no-scrollbar flex flex-col gap-4 absolute right-0 left-0 top-20 px-4 text-xs">
+                    <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">Hellow</div>
+                    <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellow    </div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                    <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellow    </div>
+                </div> 
+                <div class="chatBoxFooter w-full absolute bottom-0 left-0 rounded-md px-4 py-2 flex  gap-2 justify-between items-center z-50">
+                    <!-- send-->
+                    <button id="sendBtn" class="hidden cursor-pointer  text-lg">
+                        <i class="fa-solid fa-paper-plane text-blue-700"></i>
+                    </button>
+                    <div>
+                        <input type="file" id="file" class="file-upload hidden">
+                        <label  id="fileBtn" for="file" class="upload-label transition duration-300">
+                            <i class="fa-solid fa-paperclip cursor-pointer text-lg"></i>
+                        </label>
+                    </div>
+                    <input id="messageInput"  rows="1" placeholder="Type a message..." class="flex-1 w-full rounded p-1 border-none  focus:outline-none focus:ring-2">
+                    <button id="recordBtn" >
+                        <i class="fa-solid fa-microphone cursor-pointer  text-lg"></i>
+                    </button>
+                    
+                    <!-- timer -->
+                    <span id="timer" class="hidden flex-1 text-center">00:00</span>
+
+                    <!-- delete-->
+                    <button id="deleteBtn" class="hidden cursor-pointer  text-lg ">
+                        <i class="fa-solid fa-trash text-red-500"></i>
+                    </button>
+                </div>
+            </section>
+
+        </section>    
+    </main>
+    <!-- Footer -->
+    <footer class="footer bg-gray-100  text-gray-700  pt-16 pb-8">
+        <div class="footer-container max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+
+        <!-- Logo & Contact -->
+        <div class="footer-logo-contact">
+            <a href="#" class="footer-logo text-2xl font-bold text-sky-700 dark:text-sky-400">Sapienta</a>
+            <p class="footer-desc mt-4 text-sm leading-relaxed">
+            Empowering learning through expert-led courses and transformative research.
+            </p>
+            <p class="footer-email mt-4 text-sm">
+            <i class="fa-solid fa-envelope text-blue-600 mr-2"></i> contact@sapienta.com
+            </p>
+            <p class="footer-location text-sm">
+            <i class="fa-solid fa-location-dot text-red-500 mr-2"></i> Berlin, Germany
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-links">
+            <h4 class="footer-title text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="footer-list space-y-2">
+            <li><a href="./courses.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-graduation-cap text-purple-600 mr-2"></i>Courses</a></li>
+            <li><a href="./about.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-users text-green-600 mr-2"></i>About Us</a></li>
+            <li><a href="./contactUs.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-envelope-open-text text-blue-500 mr-2"></i>Contact</a></li>
+            <li><a href="./Research-Development.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-flask text-pink-500 mr-2"></i>Research</a></li>
+            <li><a href="./blog.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-blog text-yellow-500 mr-2"></i>Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-social">
+            <h4 class="footer-title text-lg font-semibold mb-4">Follow Us</h4>
+            <div class="social-icons flex space-x-4">
+            <a href="https://facebook.com" target="_blank" class="social-link hover: transition">
+                <i class="fab fa-facebook-f text-blue-600 text-lg"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="social-link hover: transition">
+                <i class="fab fa-twitter text-sky-400 text-lg"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-link hover: transition">
+                <i class="fab fa-linkedin-in text-blue-700 text-lg"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="social-link hover: transition">
+                <i class="fab fa-instagram text-pink-500 text-lg"></i>
+            </a>
+            </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="footer-newsletter">
+            <h4 class="footer-title text-lg font-semibold mb-4">Newsletter</h4>
+            <p class="newsletter-desc text-sm mb-4">Subscribe to stay updated with the latest courses and news.</p>
+            <form class="newsletter-form flex flex-col space-y-3">
+            <input type="email" placeholder="Your email" class="newsletter-input px-4 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+            <button type="submit" class="newsletter-button heroSectionBtn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                Subscribe
+            </button>
+            </form>
+        </div>
+
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom mt-12 text-center text-sm text-gray-500 dark:text-gray-500">
+        &copy; 2025 Sapienta. All rights reserved.
+        </div>
+    </footer>
+    <!-- Custom JS -->
+  <script src="../src/swiper/swiper-bundle.min.js"></script>
+    <script src="../src/js/main.js"></script>
+</body>
+</html>

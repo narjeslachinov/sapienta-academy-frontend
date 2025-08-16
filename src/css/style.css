@@ -1,0 +1,510 @@
+
+/* Color */
+:root {
+  --primary-color: #1c398e;     /* bg-blue-800 */
+  --primary-light-color: #51a2ff;  /*bg-blue-400*/
+  --primary-verylight-color: #dbeafe;  /*bg-blue-100*/
+  --primary-dark-color: #162456;  /*bg-blue-950*/
+  --secondary-color: #6a7282;     /* bg-secondary-800 */
+  --secondary-light-color: #e4e4e7;  /*bg-secondary-300*/
+  --secondary-verylight-color: #f9fafb;  /*bg-blue-100*/
+  --secondary-dark-color: #4a5565;  /*bg-secondary-950*/
+  --secondary-verydark-color: #1e2939;  /*bg-secondary-800*/
+}
+/* hide scrroll  */
+.no-scrollbar {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.BlueTitle{
+  color: var(--primary-color);
+}
+.secondaryTitle{
+  color: var(--secondary-color);
+}
+/* End Color */
+/* background  */
+.bg-primary-verylight{
+  background-color: var(--primary-verylight-color);
+}
+/*End background  */
+/* line clamp */
+.line-clamp-1{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;     
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 1.6rem;
+  }
+.line-clamp-2{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;     
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3.2rem;
+}
+.line-clamp-3{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;     
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 4.8rem;
+}
+.line-clamp-4{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;     
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 5rem;
+}
+.line-clamp-7{
+  display: -webkit-box;
+  -webkit-line-clamp: 7;     
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 8.8rem;
+}
+/*end line clamp */
+.rotate-180 {
+  transform: rotate(180deg);
+}
+/* Btn Style */
+.primaryBtn{
+  background-color: var(--primary-color);
+}
+.HoverPrimaryBtn:hover{
+  background: linear-gradient(215deg,var(--primary-color),var(--primary-light-color));
+  border: none;
+}
+.secondaryBtn{
+  background-color: var(--secondary-color);
+}
+.HoversecondaryBtn:hover{
+  background: linear-gradient(215deg,var(--secondary-color),var(--secondary-light-color));
+  border: none;
+}
+.bgblueBtn{
+  backdrop-filter: blur(1px);
+}
+.gradientBtn1{
+  background: linear-gradient(145deg, var(--primary-verylight-color), var(--secondary-light-color));
+}
+/* End Btn Style */
+.scale1:hover{
+    transform: scale(1.1);
+}
+/* hover  */
+.primary-light-hover:hover{
+  color: var(--primary-light-color);
+}
+/* End hover  */
+/* max height */
+.maxHeight36{
+  max-height: 36rem;
+}
+/* end max height */
+/* scroll margin */
+.scroll-marginTop1{
+  scroll-margin-top: 100px;
+  scroll-behavior: smooth;
+}
+/* scroll margin */
+/* ######## Home Page ########## */
+/* Navbar */
+.main-nav .nav-menu-mobile{
+  background-color:var(--secondary-verydark-color); 
+  margin: 0 !important;
+}
+/* End Navbar */
+/* login modal */
+.login-modal-overlay .login-modal-box{
+  max-width: 95%;
+  max-height: 95%;
+}
+/*end login modal */
+/* Courses Section */
+
+.coursesSection  .course-card:hover ,.courses-filter-panel .courses-cards .course-card:hover{
+  color: var( --primary-light-color); 
+  border: solid 2px  var( --primary-light-color);
+}
+
+#coursesBtn i{
+  color: var(--primary-light-color);
+}
+
+/*End Courses Section */
+/* Chat Box */
+#openDialoge {
+  border: solid 2px  var( --primary-light-color);
+}
+#openDialoge:hover {
+  border: solid 2px  var(--secondary-verydark-color);
+}
+#chatBox{
+  height: 100vh;
+  background: #f3f3f3  url(../imges/bgchat.png);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
+}
+@media (min-width: 640px)  {
+  #chatBox{
+    height: calc(100vh - 150px);
+    overflow-y: hidden; 
+  }
+}
+#chatBox .chatBoxHeader{
+  background-color: var(--primary-color);
+}
+#chatBox .chatBoxHeader #closeDialoge:hover{
+  color: var(--primary-light-color);
+}
+#chatBox .chatBoxBody{
+  height: calc(100vh - 200px); 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    padding-bottom: 100px;
+}
+#chatBox .customerText{
+  background-color: var(--primary-color);
+  max-width: 80%;
+  align-self: flex-start;
+}
+#chatBox .dialogeText{
+  background-color: #fff;
+  max-width: 80%;
+  align-self: flex-end;
+  color: #444
+}
+
+#chatBox .customerText::after {
+  bottom: -2px;
+  width: 16px;
+  height: 20px;
+  background: #f3f3f3;
+  -webkit-transform: translate(-20px,-2px);
+  content: " ";
+  position: absolute;
+  z-index: 3;
+  left: 4px;
+  border-bottom-right-radius: 10px;
+}
+#chatBox .customerText::before {
+content: " ";
+  position: absolute;
+  z-index: 2;
+  left: -4px;
+  border-bottom-right-radius: 30px;
+  bottom: 0;
+  height: 17px;
+  -webkit-transform: translate(0,-2px);
+  width: 16px;
+  background:var(--primary-color) ;
+}
+#chatBox .dialogeText::after {
+  bottom: -2px;
+  width: 16px;
+  height: 20px;
+  background: #f3f3f3;
+  -webkit-transform: translate(20px, -2px); 
+  content: " ";
+  position: absolute;
+  z-index: 3;
+  right: 4px; 
+  border-bottom-left-radius: 10px; 
+}
+#chatBox .dialogeText::before {
+  content: " ";
+  position: absolute;
+  z-index: 2;
+  right: -4px;
+  border-bottom-left-radius: 30px; 
+  bottom: 0;
+  height: 18px;
+  -webkit-transform: translate(0, -2px);
+  width: 16px;
+  background: #fff;
+}
+#chatBox .chatBoxFooter{
+  background-color: #fff ;
+}
+#chatBox .chatBoxFooter .upload-label , #chatBox .chatBoxFooter #recordBtn , #chatBox .chatBoxFooter #emojiBtn{
+     color: #8394ab;
+}
+#chatBox .chatBoxFooter .upload-label:hover ,#chatBox .chatBoxFooter #recordBtn i:hover , #chatBox .chatBoxFooter #emojiBtn i:hover{
+    color: #3c4858;
+}
+
+/* End chat Box */
+/* testimonials section */
+.testimonials-section .testimonial-card:hover{
+ transform: translateY(-2px);
+}
+
+.swiper-wrapper{
+  padding-bottom: 6rem;
+}
+.swiper-button-next,  .swiper-button-prev {
+  bottom: var(--swiper-pagination-bottom, 8px) !important;
+  top: var(--swiper-pagination-top, auto) !important;
+  background-color: var(--secondary-color);
+  color: var(--secondary-light-color);
+}
+.swiper-button-next::after,  .swiper-button-prev::after {
+font-size: 20px !important;
+}
+.swiper-button-next{
+    left: var(--swiper-navigation-sides-offset, 70px) !important;
+    right: auto !important;
+}
+.swiper-button-prev{
+  left: var(--swiper-navigation-sides-offset, 15px) !important;
+  right: auto !important;
+  }
+/*  End  testimonials section */ 
+/* cta section */
+.cta-section {
+  background-color: var(--primary-color);
+}
+/* ######## End Home Page ########## */
+/* ########## courses page ########## */
+.courses-filter-bar{
+  background-color: var(--primary-verylight-color);
+}
+#openMobileFilters{
+  background-color: var(--secondary-verydark-color);
+  color: var(--primary-light-color);
+}
+#mobileFilterDrawer .mobileFilterDrawerContent{
+  max-height: 90% !important;
+}
+.mobileFilterItems .mobileFilterItem{
+  background-color: var(--secondary-light-color);
+}
+.selectedFilteringTags{
+  color: var(--primary-color) !important;
+  background-color:var(--primary-verylight-color) ;
+  border: solid 1px var(--primary-color) ;
+  font-weight: bold;
+}
+.selectedFilteringTags:hover i{
+  animation: wiggle 1s ease-in-out forwards;
+}
+@keyframes wiggle {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.selectedFilteringTags i{
+  color: var(--primary-color) !important;
+}
+.unselectedFilteringTags{
+  color: var(--secondary-color) !important;
+  background-color:var(--secondary-verylight-color) ;
+  border: solid 1px var(--secondary-color) ;
+  font-weight: normal;
+}
+.unselectedFilteringTags:hover {
+  background-color: var(--secondary-light-color) ;
+}
+.unselectedFilteringTags i{
+  color: var(--secondary-color) !important;
+}
+/* mobile courses page */
+.selectedBarItem{
+  color: var(--primary-color) !important;
+  font-weight: bold;
+  background-color: var(--secondary-light-color);
+  border: 1px solid var(--primary-color);
+}
+
+.unelectedBarItem{
+  color: var(--secondary-dark-color) !important;
+  background-color: white;
+}
+.unelectedBarItem:hover{
+  color: var(--primary-color) !important;
+  font-weight: bold;
+  background-color: var(--secondary-light-color);
+}
+
+/* course detail page */
+.UnelectedCourseDescription{
+  color: var(--secondary-dark-color) !important;
+  background-color: white;
+}
+.SelectedCourseDescription{
+  color: var(--primary-color) !important;
+  font-weight: bold;
+  background-color: var(--secondary-light-color);
+}
+.UnelectedCourseDescription:hover{
+  color: var(--primary-color) !important;
+  font-weight: bold;
+  background-color: var(--secondary-light-color);
+}
+.competition-section .contest-card:hover a{
+  color: var(--primary-light-color) !important;
+  text-decoration: underline;
+}
+/* ########## End Courses Page ########## */
+/* ########## Detail Courses Page ########## */
+.detail-course-section .course-description .toggle-description-btn{
+  color: var(--primary-light-color);
+}
+.detail-course-section .course-description .toggle-description-btn:hover{
+  color: var(--primary-color);
+}
+/* ########## End Detail Courses Page ########## */
+/* ########## Detail Courses Page ########## */
+.course-desc-section .toggle-description-btn{
+  color: var(--primary-light-color);
+}
+.course-desc-section .toggle-description-btn:hover{
+  color: var(--secondary-color);
+}
+ .course-video-section #openModalBtn i{
+  color: var(--primary-light-color);
+}
+.course-video-section #openModalBtn i:hover{
+  color: var(--primary-color);
+} 
+.related-courses-section .related-courses-card a{
+  color: var(--primary-light-color);
+}
+.related-courses-section .related-courses-card:hover a{
+  color: var(--primary-light-color);
+}
+/* ########## End Detail Courses Page ########## */
+/* ########## About Us Page ########## */
+.rAndDSection .rAndDTitle , .mission-section .mission-title , .vision-section .vision-title {
+  color: var(--primary-color);
+}
+.rAndDSection .rAndDSubtitle { 
+  color: var(--secondary-color);
+}
+.mission-section .point-item i ,.vision-section .vision-item i{
+  color: var(--primary-light-color);
+}
+.mission-section .point-item i:hover ,.vision-section .vision-item i:hover{
+  color: var(--secondary-color);
+}
+.sapintaTeamSection .sapintaTeamTitle{
+  color: var(--primary-color);
+}
+.sapintaTeamSection .TeamFilterBar{
+  background-color: var(--primary-verylight-color);
+}
+.teamFilter .sapintaTeamCards .sapintaTeamCard .sapintaTeamRole{
+  color: var(--primary-light-color);
+}
+.teamFilter .sapintaTeamCards .sapintaTeamCard:hover  {
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+.teamFilter .sapintaTeamCards .sapintaTeamCard .sapintaTeamImg{
+  border: 2px solid var(--primary-verylight-color);
+}
+.teamFilter .sapintaTeamCards .sapintaTeamCard .sapintaTeamName{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;     
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3.2rem;
+}
+.teamFilter .sapintaTeamCards .sapintaTeamCard .sapintaTeamDesc{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;     
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 5rem;
+}
+.approved-section .headline{
+  color: var(--primary-color);
+}
+.about-page-cta-section{
+  background-color: var(--primary-color);
+}
+/* ########## End About Us Page ########## */
+/* ########## R&D Page ########## */
+.why-it-matters-section .impact-card .impact-icon{
+  background-color: var(--primary-verylight-color);
+  color: var(--primary-color);
+}
+.why-it-matters-section .impact-card:hover  .impact-icon {
+  color: var(--secondary-color);
+}
+.why-it-matters-section .impact-card:hover {
+ transform: translateY(-10px);
+}
+.why-it-matters-section .impact-card .impact-bar {
+      background-image: linear-gradient(var(--primary-light-color), var(--secondary-dark-color));
+
+}
+.why-it-matters-section .rnd-flowchart .flowchart-step i {
+    background: linear-gradient(45deg, var(--primary-verylight-color), var(--secondary-dark-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.live-research-section .research-card .research-title{
+        color:var(--primary-light-color);
+}
+.live-research-section .research-card .progress-bar{
+        background-image: linear-gradient(var(--primary-dark-color), var(--secondary-light-color));
+}
+.live-research-section .research-card:hover .progress-bar {
+    background: linear-gradient(45deg, var(--primary-light-color), var(--secondary-dark-color));
+}
+.live-research-section .research-card:hover .research-card-img{
+      transform: scale(1.05);;
+}
+
+
+/* ----- Tools Section ----- */
+.tools-section .tool-card {
+  border: 1px solid var(--primary-verylight-color);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.tools-section .tool-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px -8px rgba(30,90,120,.15);
+}
+.tools-section .tool-link {
+  color: var(--primary-color);
+  transition: color 0.2s;
+}
+.tools-section .tool-link:hover {
+  color: var(--secondary-color);
+}
+
+/* ----- Educator Portal ----- */
+.educator-portal-section .signup-box {
+    border: 2px solid var(--primary-verylight-color);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.RandD-cta-section{
+  background-color: var(--primary-color);
+}
+
+/* ########## End R&D Page ########## */
+/* ########## weblog Page ########## */
+.blog-section .PopularPosts .PopularPost:hover ,.BlogCategories .categoriesItem:hover{
+  color: var(--primary-light-color);
+}
+
+/* ########## End Weblog Page ########## */
+
+
+
+
+

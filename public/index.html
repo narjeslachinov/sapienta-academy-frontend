@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sapienta</title>
+    <link rel="stylesheet" href="../src/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../src/swiper/swiper-bundle.min.css">
+    <link href="../dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="../src/css/font.css">
+</head>
+<body class="bg-light montserratFont text-base text-gray-700 ">
+  <!-- Sticky Navbar  -->
+  <header class="main-nav sticky top-0 z-50 w-full transition-all duration-500">
+      <div class="nav-inner w-full  bg-white bg-opacity-10  border border-white border-opacity-10 shadow-inner text-white rounded-b transition-all duration-300 ease-in-out">
+        <div class="flex justify-between items-center h-16 space-x-8 max-w-6xl mx-auto px-6 py-10">
+            <!-- desktop logo -->
+            <a href="./index.html" class="flex-1 text-xl font-bold logo-text"><img src="../src/imges/logo/sapieenta logo design-02.svg" class="w-32 mt-2 bg-white px-2 py-1 rounded-full" alt="logo"></a>
+            <!-- Desktop Menu -->
+            <div class="nav-menu hidden sm:flex items-center">
+                <div class="relative  space-x-6">
+                    <a href="./courses.html" class="nav-link primary-light-hover">Courses</a>
+                    <a href="./about.html" class="nav-link primary-light-hover">About Us</a>
+                    <a href="./contactUs.html" class="nav-link primary-light-hover">Contact Us</a>
+                    <a href="./Research-Development.html" class="nav-link primary-light-hover">R&D</a> 
+                    <a href="./blog.html" class="nav-link primary-light-hover">Blog</a>    
+                 </div>
+            </div>
+            <!-- Login Button (Desktop) -->
+            <div class="">
+              <button onclick="openLoginModal()" href="#" class="login-btn flex items-center space-x-2 text-white  transition primary-light-hover">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <span>Login</span>
+              </button>
+            </div>
+            <!-- Toggle button for mobile -->
+            <button class="menu-toggle sm:hidden text-2xl z-40 relative p-4 ">
+              <i class="fa-solid fa-bars text-white primary-light-hover text-2xl  transition"></i>
+            </button>
+            <!-- Fullscreen Mobile Menu -->
+            <div class="nav-menu-mobile fixed inset-0 h-screen z-40  hidden transition-all duration-500 ease-in-out opacity-0 scale-95">
+              <button class="menu-close absolute top-6 right-6 text-3xl">
+                  <i class="fa-solid fa-xmark text-white text-2xl  transition primary-light-hover"></i>
+              </button>
+              <div class="flex flex-col items-center justify-center space-y-6 text-white text-xl pt-12 overflow-scroll">
+                  <a href="./index.html" class="text-xl font-bold logo-text"><img src="../src/imges/logo/sapieenta logo design-02.svg" class="w-32 bg-white p-2 rounded-lg mb-8" alt="logo"></a>
+                  <a href="./courses.html" class="nav-link primary-light-hover">Courses</a>
+                  <a href="./about.html" class="nav-link primary-light-hover">About Us</a>
+                  <a href="./contactUs.html" class="nav-link primary-light-hover">Contact Us</a>
+                  <a href="./Research-Development.html" class="nav-link primary-light-hover">R&D</a> 
+                  <a href="./blog.html" class="nav-link primary-light-hover">Blog</a> 
+              </div>
+            </div>
+        </div> 
+      </div>
+      <!-- Modal Overlay and Box -->
+      <div id="login-modal-overlay" class="login-modal-overlay hidden fixed inset-0   flex justify-center items-center z-50 bg-black  pointer-events-none transition-opacity duration-300">
+          <!-- Modal Box -->
+          <div id="login-modal-box" class="login-modal-box relative bg-white rounded-2xl shadow-2xl overflow-auto  px-6 py-8 flex flex-col gap-6  scale-95 opacity-0 transition-all duration-300 ">
+          <!-- Close Modal Button -->
+          <button type="button"
+                  class="login-modal-close absolute left-4 top-3   text-2xl focus:outline-none"
+                  aria-label="Close modal"
+                  onclick="closeLoginModal()">
+              <i class="fa-solid fa-xmark primary-light-hover"></i>
+          </button>
+          <div class="flex  justify-center">
+              <button id="StudentForm" class="primaryBtn text-white px-2 py-1 rounded-l-full">Student</button>
+              <button id="InstructorForm" class="selectedBarItem px-2 py-1 rounded-r-full">Instructor</button>
+          </div>
+          <div id="studentloginForm" class="loginModal">
+              <!-- Modal Header -->
+              <div class="login-modal-header text-center">
+                  <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Student Login</h2>
+                  <p class="secondaryTitle text-sm">For Sapienta student users</p>
+              </div>
+
+              <!-- Login Form -->
+              <form class="login-modal-form flex flex-col gap-5" autocomplete="on">
+              <!-- Email Field -->
+              <div class="login-field">
+                  <label for="login-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4  text-lg">
+                      <i class="fa-solid fa-envelope text-red-400"></i>
+                  </span>
+                  <input id="login-email" name="email" type="email" required dir="ltr"
+                      placeholder="Enter your email"
+                      class="input-email-login py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2 "/>
+                  </div>
+              </div>
+              <!-- Password Field -->
+              <div class="login-field">
+                  <label for="login-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                      <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input id="login-password" name="password" type="password" required
+                      placeholder="Enter your password"
+                      class="input-password-login  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                  <!-- Show/hide password (Eye) -->
+                  <button type="button"
+                          tabindex="-1"
+                          class="login-show-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                          data-toggle="password">
+                      <i  class="fa-solid fa-eye"></i>
+                  </button>
+                  </div>
+              </div>
+
+              <!-- Remember Me & Forgot Password -->
+              <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                  <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                  <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                  <span>Remember</span>
+                  </label>
+                  <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline  transition">Forgot your password?</a>
+              </div>
+
+              <!-- Login Button -->
+              <button type="submit"
+                  class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                  Login
+              </button>
+              </form>        
+          </div>
+          <div id="studentSignupForm" class="SignupModal hidden">
+              <!-- Modal Header -->
+              <div class=" Signup-modal-header text-center">
+              <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Student Registration</h2>
+              <p class="secondaryTitle text-sm">Create your Sapienta student account</p>
+              </div>
+
+              <!-- Signup Form -->
+              <form class="Signup-modal-form flex flex-col gap-5" autocomplete="on">
+              <!-- Full Name Field -->
+              <div class="signup-field">
+                  <label for="signup-name" class="block secondaryTitle font-semibold mb-2">Full Name</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4 text-lg">
+                      <i class="fa-solid fa-user text-green-400"></i>
+                  </span>
+                  <input id="signup-name" name="name" type="text" required dir="ltr"
+                      placeholder="Enter your full name"
+                      class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2"/>
+                  </div>
+              </div>
+              <!-- Email Field -->
+              <div class="Signup-field">
+                  <label for="Signup-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4  text-lg">
+                      <i class="fa-solid fa-envelope text-red-400"></i>
+                  </span>
+                  <input id="Signup-email" name="email" type="email" required dir="ltr"
+                      placeholder="Enter your email"
+                      class="input-email-Signup py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2 "/>
+                  </div>
+              </div>
+              <!-- Password Field -->
+              <div class="Signup-field">
+                  <label for="Signup-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                      <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input id="Signup-password" name="password" type="password" required
+                      placeholder="Enter your password"
+                      class="input-password-Signup  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                  <!-- Show/hide password (Eye) -->
+                  <button type="button"
+                          tabindex="-1"
+                          class="Signup-show-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                          data-toggle="password">
+                      <i class="fa-solid fa-eye"></i>
+                  </button>
+                  </div>
+              </div>
+              <!--Confirm  Password Field -->
+              <div class="Signup-field">
+                  <label for="Signup-confirm-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                      <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input id="Signup-confirm-password" name="password" type="password" required
+                      placeholder="Enter your password"
+                      class="input-confirm-password-Signup  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                  <!-- Show/hide password (Eye) -->
+                  <button type="button"
+                          class="Signup-show-confirm-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                          data-toggle="password">
+                      <i class="fa-solid fa-eye"></i>
+                  </button>
+                  </div>
+              </div>
+
+              <!-- Remember Me & Forgot Password -->
+              <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                  <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                  <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                  <span>Remember</span>
+                  </label>
+                  <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline  transition">Forgot your password?</a>
+              </div>
+
+              <!-- Login Button -->
+              <button type="submit"
+                  class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                  Signup
+              </button>
+              </form>        
+          </div>
+          <div id="instructorLoginForm" class="LoginModal hidden">
+              <div class="login-modal-header text-center">
+                  <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Instructor Login</h2>
+                  <p class="secondaryTitle text-sm">Access your instructor account</p>
+              </div>
+
+              <form class="login-modal-form flex flex-col gap-5" autocomplete="on">
+                  <div class="login-field">
+                      <label for="login-email-instructor" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-lg">
+                              <i class="fa-solid fa-envelope text-red-400"></i>
+                          </span>
+                          <input id="login-email-instructor" name="email" type="email" required dir="ltr"
+                              placeholder="Enter your email"
+                              class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                      </div>
+                  </div>
+
+                  <div class="login-field">
+                      <label for="login-password-instructor" class="block secondaryTitle font-semibold mb-2">Password</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                              <i class="fa-solid fa-lock"></i>
+                          </span>
+                          <input id="login-password-instructor" name="password" type="password" required
+                              placeholder="Enter your password"
+                              class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                          <button type="button" tabindex="-1"
+                              class="login-show-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                              data-toggle="password">
+                              <i  class="fa-solid fa-eye"></i>
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                      <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                          <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                          <span>Remember</span>
+                      </label>
+                      <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline transition">Forgot your password?</a>
+                  </div>
+
+                  <button type="submit"
+                      class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                      Login
+                  </button>
+              </form>
+          </div>
+          <div id="instructorSignupForm" class="SignupModal hidden">
+              <div class="Signup-modal-header text-center">
+                  <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Instructor Registration</h2>
+                  <p class="secondaryTitle text-sm">Create your Sapienta instructor account</p>
+              </div>
+
+              <form class="Signup-modal-form flex flex-col gap-5" autocomplete="on">
+                  <div class="signup-field">
+                      <label for="instructor-signup-name" class="block secondaryTitle font-semibold mb-2">Full Name</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-lg">
+                              <i class="fa-solid fa-user text-green-400"></i>
+                          </span>
+                          <input id="instructor-signup-name" name="name" type="text" required dir="ltr"
+                              placeholder="Enter your full name"
+                              class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                      </div>
+                  </div>
+
+                  <div class="Signup-field">
+                      <label for="instructor-signup-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-lg">
+                              <i class="fa-solid fa-envelope text-red-400"></i>
+                          </span>
+                          <input id="instructor-signup-email" name="email" type="email" required dir="ltr"
+                              placeholder="Enter your email"
+                              class="input-email-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                      </div>
+                  </div>
+
+                  <div class="Signup-field">
+                      <label for="instructor-signup-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                              <i class="fa-solid fa-lock"></i>
+                          </span>
+                          <input id="instructor-signup-password" name="password" type="password" required
+                              placeholder="Enter your password"
+                              class="input-password-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                          <button type="button" tabindex="-1"
+                              class="Signup-show-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                              data-toggle="password">
+                              <i class="fa-solid fa-eye"></i>
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="Signup-field">
+                      <label for="instructor-signup-confirm-password" class="block secondaryTitle font-semibold mb-2">Confirm Password</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                              <i class="fa-solid fa-lock"></i>
+                          </span>
+                          <input id="instructor-signup-confirm-password" name="confirm-password" type="password" required
+                              placeholder="Confirm your password"
+                              class="input-confirm-password-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                          <button type="button" tabindex="-1"
+                              class="Signup-show-confirm-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                              data-toggle="password">
+                              <i  class="fa-solid fa-eye"></i>
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                      <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                          <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                          <span>Remember</span>
+                      </label>
+                      <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline transition">Forgot your password?</a>
+                  </div>
+
+                  <button type="submit"
+                      class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                      Signup
+                  </button>
+              </form>
+          </div>
+          <!-- OR Separator -->
+          <div class="login-separator flex items-center my-3 gap-3">
+              <div class="flex-1 border-b border-gray-200"></div>
+              <div class=" text-xs font-bold">Or continue</div>
+              <div class="flex-1 border-b border-gray-200"></div>
+          </div>
+
+          <!-- OAuth Login Buttons -->
+          <div class="login-oauth flex gap-4 flex-col sm:flex-row mt-2">
+              <button type="button"
+              class="login-btn-google flex-1 flex items-center gap-2 justify-center py-2 rounded-lg border border-gray-200 shadow-md text-gray-700 font-bold bg-white hover:bg-gray-50 hover:shadow-lg hover:scale-105 transition">
+              <img src="../src/imges/icon/google.png" class="w-8 h-8 ml-2 rounded-full" alt="Google">
+              <span>Continue with Google</span>
+              </button>
+              <button type="button"
+              class="login-btn-apple flex-1 flex items-center gap-2 justify-center py-2 rounded-lg border border-gray-200 shadow-md text-gray-700 font-bold bg-white hover:bg-gray-50 hover:shadow-lg hover:scale-105 transition">
+              <img src="../src/imges/icon/apple.jpg" class="w-8 h-8 ml-2 rounded-full" alt="Apple">
+              <span>Continue with Apple</span>
+              </button>
+          </div>
+
+          <!-- Sign Up Link -->
+          <div id="authSwitchText" class="login-register text-center mt-4">
+              <span id="authSwitchLabel" class="text-gray-600 text-sm">
+                  Don't have an account?
+                  <button id="authSwitchBtn" class="text-primary-color font-bold underline transition">Sign up</button>
+              </span>
+          </div>
+
+
+          <!-- Security Notice -->
+          <div class="login-secure-note flex items-center gap-2 justify-center mt-2 text-xs ">
+              <i class="fa-solid fa-shield-halved text-primary-color text-base"></i>
+              <span>Your information is encrypted and secure</span>
+          </div>
+          </div>
+      </div>
+  </header> 
+  <main>
+    <!-- Hero Section -->
+    <section class="heroSection relative w-full h-screen overflow-hidden bg-gray-900 text-white -mt-20">
+      <!-- Background image or video -->
+      <img src="../src/imges/banner.webp" alt="Hero background" class=" inset-0 w-full h-full object-cover opacity-40 z-0">
+      <!-- Overlay content -->
+      <div class="absolute inset-0  z-10 flex flex-col justify-center items-center h-full text-center px-6">
+        <h1 class="text-3xl md:text-4xl font-extrabold mb-4 max-w-6xl">From curiosity to sapience, through dialogue</h1>
+        <p class="text-lg md:text-xl mb-8 max-w-6xl text-gray-100">Build your academic character, shape the future.</p> 
+        <!-- CTA buttons -->
+        <div class="flex flex-col md:flex-row gap-4">
+          <a href="./courses.html" class="heroSectionBtn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+            Explore Courses
+          </a>
+          <a  onclick="openLoginModal()" class="heroSectionBtn HoverPrimaryBtn bg-white bg-opacity-10 bgblueBtn  border border-white border-opacity-10 shadow-inner px-6 py-3 rounded-lg font-semibold transition">
+            Get Started
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Key Features Section -->
+    <section id="features" class="keyFeatureSection bg-white  py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
+
+          <!-- Feature Item -->
+          <div class=" transition transform hover:-translate-y-2">
+            <div class="flex justify-center mb-4">
+              <i class="fa-solid fa-chalkboard-teacher text-purple-600 text-4xl animate-bounce "></i>
+            </div>
+            <h3 class="text-lg md:text-xl font-semibold BlueTitle">Expert-Led Courses</h3>
+            <p class="text-sm ">Learn from top-tier instructors & researchers.</p>
+          </div>
+
+          <!-- Feature Item -->
+          <div class=" transition transform hover:-translate-y-2">
+            <div class="flex justify-center mb-4">
+              <i class="fa-solid fa-clock text-yellow-600 text-4xl animate-pulse "></i>
+            </div>
+            <h3 class="text-lg md:text-xl font-semibold BlueTitle">Flexible Learning</h3>
+            <p class="text-sm ">Learn anytime, anywhere, at your pace.</p>
+          </div>
+
+          <!-- Feature Item -->
+          <div class="transition transform hover:-translate-y-2">
+            <div class="flex justify-center mb-4">
+              <i class="fa-solid fa-users text-red-500 text-4xl animate-bounce"></i>
+            </div>
+            <h3 class="text-lg md:text-xl font-semibold BlueTitle">Community Access</h3>
+            <p class="text-sm">Join a vibrant learning community and collaborate with peers.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- About Sapienta Section -->
+    <section class="aboutSapientaSection bg-gray-100  py-16">
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-between">     
+        <!-- Image / Animation -->
+        <div class="mx-auto">
+          <img src="../src/imges/about-up.webp" alt="Courses background" class=" w-72 h-72 object-cover  transition-transform duration-500 ease-in-out scale1  z-0 rounded-full">
+        </div>
+        <!-- Text Content -->
+        <div>
+          <h2 class="text-xl md:text-2xl  lg:text-3xl font-extrabold BlueTitle mb-4">
+            About Sapienta Snapshot
+          </h2>
+          <p class="text-justify  text-lg mb-6 leading-relaxed">
+            Sapienta Snaps is a vibrant initiative that transforms curiosity into wisdom.
+            Through expert-led courses, collaborative research, and immersive learning
+            experiences, we empower learners to become leaders in knowledge and innovation.
+          </p>
+
+          <!-- Read More Button -->
+          <a href="./about.html" 
+            class="primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+            Read More
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+    <!-- Courses Preview Section -->
+    <section class="coursesSection bg-white  py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Title -->
+        <h2 class="text-xl md:text-2xl  lg:text-3xl font-bold text-center BlueTitle mb-8">Courses Preview</h2>
+        <!-- Course Cards Grid -->
+        <div id="coursesCountainer" class="courses-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative mb-8 transition-all duration-700 ease-in-out  maxHeight36 overflow-hidden">
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary1"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                           Exam Prep & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Mathematics: Secondary 1
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Welcome to the mathematical playground where numbers meet curiosity. You will build your knowledge about natural numbers, fractions, geometry, and a dash of algebra — all wrapped in puzzles, mysteries, and the occasional “Wait, is that math?!” moments.
+                  </p>
+
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary2"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Mathematics: Secondary 2
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Think of this as Level 2 of your math adventure: more powerful algebra moves, sharper geometry tricks, and data that actually tells a story. By the end, you’ll see connections everywhere — even in places your friends swear “don’t have math in them.”
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary3"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                           Exam Prep & Core Concept Cours
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Mathematics: Secondary 3
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      We’re talking bigger ideas, deeper thinking, and your first serious encounter with Affine equations. This is where math starts flexing its muscles, and you start seeing why it’s the language of the universe.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary4"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                        Exam Prep & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Mathematics: Secondary 4, Science Option
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      The science-bound gateway. We dive into algebra that can predict, trigonometry that can measure the impossible, and functions that can tell the future (sort of). If you’re headed for science, engineering, or technology — this is your launch pad.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary4"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Mathematics:  Secondary 4, Cultural, Social, and Technical Option
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Practical, powerful, and immediately useful — from comparing phone plans to decoding statistics in the news. This course is math with a passport to real life, and you’ll be surprised how often you actually use it.
+                  </p>
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary4"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Mathematics: Secondary 4, Technical and Scientific Option 
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Where technical know-how meets mathematical elegance. You’ll learn to solve problems with tools sharp enough for both the lab and the workshop, connecting abstract theory with hands-on applications.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary5"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                           Exam Prep & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                    Mathematics: Secondary 5, Science Option
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Math at full throttle — advanced functions, mind-bending trig, and equations that feel like detective work. If your next stop is pure science or engineering, this is where you sharpen your thinking blade.
+                  </p>
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary5"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                        Exam Prep & Core Concept Course                  
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                    Mathematics: Secondary 5, Cultural, Social, and Technical Option
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      This is “math for life” at its finest — from budgeting your dream trip to reading the numbers behind sports stats and health studies. You’ll leave with the skills to make smart choices with confidence (and maybe impress your friends).
+                  </p>
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks 
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary5"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep Course & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Calculus 1 (Differential Calculus)
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      The art of change — and how to measure it. From predicting the fastest route to finding the point of perfection, derivatives reveal the hidden rhythm of motion, growth, and design.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary5"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep Course & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Calculus 2 (Integral Calculus)
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      If derivatives are about zooming in, integrals are about seeing the big picture. We’ll calculate areas, volumes, and totals in ways that turn the infinite into something you can actually measure.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary5"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep Course & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Linear Algebra
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Welcome to the math of dimensions, transformations, and patterns that scale up beautifully. Whether you’re cracking codes, animating graphics, or modelling networks, matrices and vectors are your new superpowers.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary5"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep Course & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Probability and Statistics
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Learn to make sense of the chaos. We’ll explore probability, data analysis, and statistical thinking so you can separate truth from hype — whether it’s a medical study, a sports prediction, or your friend’s “guaranteed” poker strategy.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="group"
+              data-entry="secondary5"
+              data-contest="contest-prep">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-indigo-100 text-indigo-600">
+                          Contest Prep Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      University of Waterloo Mathematics and Computing Contests
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      From the Gauss to the Euclid, and from the Beaver Computing Challenge to the CCC, these contests are designed to stretch your problem-solving muscles and reveal the beauty of creative thinking. In this prep course, you’ll tackle past problems, uncover elegant strategies, and learn how to think like a contest setter — so you can walk in confident and walk out inspired.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary5"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep Course & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Canadian Kangaroo Mathematics Contest
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Playful yet deceptively challenging, the Kangaroo contest blends clever puzzles with creative reasoning. This course helps you sharpen logic, spot patterns, and turn tricky questions into “aha!” moments. It’s math with a hop, a skip, and a leap toward flexible thinking.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          8 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Course Card -->
+          <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition group"
+              data-subject="mathematics"
+              data-format="semi-private group"
+              data-entry="secondary5"
+              data-contest="exam-prep core-concept">
+
+              <!-- Image Section with Category Badges -->
+              <div class="course-image-wrapper relative">
+                  <img src="../src/imges/math.webp" alt="Course Image"
+                      class="course-image w-full h-48 object-cover transition-transform duration-500 ease-in-out scale1">
+
+                  <!-- Left Badge -->
+                  <div class="badge badge-left absolute top-0 left-0 m-2 ">
+                      <span class="badge-math text-xs px-2 py-1 rounded-full flex items-center gap-1 bg-purple-100 text-purple-600">
+                          Exam Prep Course & Core Concept Course
+                      </span>
+                  </div>
+
+              </div>
+
+              <!-- Course Content -->
+              <div class="course-content p-4 text-sm">
+                  <!-- Title -->
+                  <h3 class="course-title text-lg font-bold mb-2 line-clamp-2">
+                      Canadian Open Mathematics Challenge
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="course-desc text-sm text-gray-600 dark:text-gray-300 mb-4 text-justify line-clamp-7">
+                      Canada’s premier high school math challenge invites you to explore elegant problems in algebra, geometry, number theory, and combinatorics. In this course, you’ll learn to read between the lines of a question, craft precise solutions, and develop the mindset needed to tackle Olympiad-level thinking.
+                  </p>
+
+                  <!-- Meta Info -->
+                  <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-300 mb-4">
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-clock text-blue-600 transition-all duration-300 ease-in-out"></i>
+                          12 Weeks
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-video text-purple-600 transition-all duration-300 ease-in-out"></i>
+                          Semi-Private, Group
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-signal text-green-600 transition-all duration-300 ease-in-out"></i>
+                          Beginner
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <i class="fa-solid fa-calendar-days text-yellow-400 transition-all duration-300 ease-in-out"></i>
+                          Starts 15 September
+                      </div>
+                      <div class="flex items-center gap-2 col-span-2">
+                          <i class="fa-solid fa-calendar-week text-indigo-600"></i>
+                          Sessions: Tuesdays and Thursdays, 5:00 - 6:00 PM
+                      </div>
+                  </div>
+
+                  <!-- Call to Action Button -->
+                  <a href="./detailcourse.html" class="course-btn primaryBtn HoverPrimaryBtn text-white px-6 py-2 rounded-lg font-semibold transition">View Course</a>
+              </div>
+          </div>
+          <!-- Fade Overlay -->
+          <div id="fadeEnd" class=" absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+        </div>
+        <button id="coursesBtn" class="text-4xl text-center flex justify-center w-full  "><i class="fa-solid fa-circle-chevron-down toggle-icon animate-bounce duration-700"></i></button>
+        <div class="text-center mt-16">
+          <a href="./courses.html" class=" secondaryBtn HoversecondaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+            View All Courses
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Why Sapienta Section -->
+    <section class="why-sapienta-section gradientBtn1">
+      <div class="why-sapienta-container relative max-w-6xl mx-auto px-6 py-20">
+
+        <!-- Title -->
+        <h2 class="why-sapienta-title text-xl md:text-2xl lg:text-3xl font-extrabold text-center BlueTitle mb-4">
+          Why Sapienta?
+        </h2>
+        <p class="text-center mb-16 mx-auto">
+          Discover the key advantages of learning with Sapienta – designed to empower your academic and career success.
+        </p>
+
+        <!-- Benefit Cards Grid -->
+        <div class="benefits-grid lg:absolute -bottom-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <!-- Benefit Card 1 -->
+          <div class="benefit-card  bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition text-center">
+            <div class="benefit-icon text-green-500 text-4xl mb-4">
+              <i class="fas fa-certificate "></i>
+            </div>
+            <h3 class="benefit-title text-lg md:text-xl font-semibold secondaryTitle">Effective Learning</h3>
+            <p class="benefit-description  mt-2 ">
+              Learn with purpose and see measurable progress.
+            </p>
+          </div>
+
+          <!-- Benefit Card 2 -->
+          <div class="benefit-card  bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition text-center">
+            <div class="benefit-icon text-yellow-500 text-4xl mb-4">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <h3 class="benefit-title text-lg md:text-xl font-semibold secondaryTitle">Mentorship</h3>
+            <p class="benefit-description  mt-2 ">
+              1-on-1 mentoring from real industry professionals.
+            </p>
+          </div>
+
+          <!-- Benefit Card 3 -->
+          <div class="benefit-card  bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition text-center">
+            <div class="benefit-icon text-blue-800 text-4xl mb-4">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <h3 class="benefit-title text-lg md:text-xl font-semibold secondaryTitle">Academic Character</h3>
+            <p class="benefit-description  mt-2">
+              Strengthen skills and sharpen your thinking.
+            </p>
+          </div>
+
+          <!-- Benefit Card 4 -->
+          <div class="benefit-card  bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition text-center">
+            <div class="benefit-icon text-red-500 text-4xl mb-4">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3 class="benefit-title text-lg md:text-xl font-semibold secondaryTitle">Sapienta Community</h3>
+            <p class="benefit-description  mt-2">
+              Connect to vibrant, passionate learners and experts.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section bg-white-50  py-20 lg:mt-24">
+      <div class="max-w-6xl mx-auto px-6 text-center">    
+        <!-- Title -->
+        <h2 class="text-xl md:text-2xl  lg:text-3xl BlueTitle font-extrabold  mb-12">What Our Students Say</h2>
+        <!-- Swiper Container -->
+        <div class="swiper mySwiper w-full  mx-auto">
+          <div class="swiper-wrapper h-full ">
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide p-2 ">
+              <!-- Testimonial Card 1 -->
+              <div class="testimonial-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition border border-gray-500">
+                <img src="../src/imges/profile.webp" alt="Student Photo"
+                    class="w-16 h-16 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="testimonial-name secondaryTitle line-clamp-2 font-semibold text-lg  ">Emily Rs helped me land my dream internship in AI research. Truly empowering!.</h3>
+                <p class="testimonial-text line-clamp-4  text-sm  mt-2 mb-4 line-clamp-3">
+                  “Sapienta’s courses helped me land my dream internship in AI research. Truly empowering!”
+                </p>
+                <!-- Ratings -->
+                <div class="testimonial-rating flex justify-center text-yellow-400 text-sm space-x-1">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <div class="swiper-button-next primary-light-hover scale1 bg-opacity-70 rounded-full w-5 h-5 p-5 text-sm"></div>
+          <div class="swiper-button-prev primary-light-hover scale1 bg-opacity-70 rounded-full w-5 h-5 p-5 text-sm"></div>
+        </div>
+      </div>
+    </section>
+    <!-- Call to Action Section -->
+    <section class="cta-section  py-16 text-white">
+      <div class="cta-container max-w-5xl mx-auto px-6 text-center">
+        
+        <!-- Title -->
+        <h2 class="cta-title text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6">
+          Ready to begin your learning journey?
+        </h2>
+
+        <!-- CTA Button -->
+        <button onclick="openLoginModal()"
+          class="cta-button secondaryBtn HoversecondaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+          Join Sapienta Now
+        </button>
+        
+      </div>
+    </section>
+    <!-- chat box btn -->
+     <button id="openDialoge" class="fixed bottom-4 left-4 z-40 shadow-xl rounded-full flex items-center justify-center bg-white">
+        <img src="../src/imges/logo/sapieenta logo design-03.svg" alt="" class="p-2  w-16 h-16">
+     </button>
+    <!-- chat box -->
+     <section id="chatBox" class="fixed top-0 sm:top-28 left-0 sm:left-16  rounded-lg w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 z-40 text-sm  z-50 hidden transition duration-700 overfow-hidden">
+        <section class=" relative h-full">
+            <div class="chatBoxHeader flex justify-between items-center py-2 px-4">
+                <h3 class="text-white">
+                    Sapinto Educational Assistant
+                </h3>
+                <div id="closeDialoge" class="text-white scale1 transition text-xl">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+            </dv>
+            <div class="chatBoxBody no-scrollbar flex flex-col gap-4 absolute right-0 left-0 top-20 px-4 text-xs">
+                <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">Hellow</div>
+                <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellow    </div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellow    </div>
+            </div> 
+            <div class="chatBoxFooter w-full absolute bottom-0 left-0 rounded-md px-4 py-2 flex  gap-2 justify-between items-center z-50">
+                <!-- send-->
+                <button id="sendBtn" class="hidden cursor-pointer  text-lg">
+                    <i class="fa-solid fa-paper-plane text-blue-700"></i>
+                </button>
+                <div>
+                    <input type="file" id="file" class="file-upload hidden">
+                    <label  id="fileBtn" for="file" class="upload-label transition duration-300">
+                        <i class="fa-solid fa-paperclip cursor-pointer text-lg"></i>
+                    </label>
+                </div>
+                <input id="messageInput"  rows="1" placeholder="Type a message..." class="flex-1 w-full rounded p-1 border-none  focus:outline-none focus:ring-2">
+                <button id="recordBtn" >
+                    <i class="fa-solid fa-microphone cursor-pointer  text-lg"></i>
+                </button>
+                
+                <!-- timer -->
+                <span id="timer" class="hidden flex-1 text-center">00:00</span>
+
+                <!-- delete-->
+                <button id="deleteBtn" class="hidden cursor-pointer  text-lg ">
+                    <i class="fa-solid fa-trash text-red-500"></i>
+                </button>
+            </div>
+        </section>
+
+     </section>
+  </main>
+  <!-- Footer -->
+  <footer class="footer bg-gray-100  text-gray-700  pt-16 pb-8">
+    <div class="footer-container max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+
+      <!-- Logo & Contact -->
+      <div class="footer-logo-contact">
+        <a href="#" class="footer-logo text-2xl font-bold text-sky-700 dark:text-sky-400">Sapienta</a>
+        <p class="footer-desc mt-4 text-sm leading-relaxed">
+          Empowering learning through expert-led courses and transformative research.
+        </p>
+        <p class="footer-email mt-4 text-sm">
+          <i class="fa-solid fa-envelope text-blue-600 mr-2"></i> contact@sapienta.com
+        </p>
+        <p class="footer-location text-sm">
+          <i class="fa-solid fa-location-dot text-red-500 mr-2"></i> Berlin, Germany
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h4 class="footer-title text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="footer-list space-y-2">
+          <li><a href="./courses.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-graduation-cap text-purple-600 mr-2"></i>Courses</a></li>
+          <li><a href="./about.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-users text-green-600 mr-2"></i>About Us</a></li>
+          <li><a href="./contactUs.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-envelope-open-text text-blue-500 mr-2"></i>Contact</a></li>
+          <li><a href="./Research-Development.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-flask text-pink-500 mr-2"></i>Research</a></li>
+          <li><a href="./blog.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-blog text-yellow-500 mr-2"></i>Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div class="footer-social">
+        <h4 class="footer-title text-lg font-semibold mb-4">Follow Us</h4>
+        <div class="social-icons flex space-x-4">
+          <a href="https://facebook.com" target="_blank" class="social-link hover: transition">
+            <i class="fab fa-facebook-f text-blue-600 text-lg"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-link hover: transition">
+            <i class="fab fa-twitter text-sky-400 text-lg"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="social-link hover: transition">
+            <i class="fab fa-linkedin-in text-blue-700 text-lg"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-link hover: transition">
+            <i class="fab fa-instagram text-pink-500 text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="footer-newsletter">
+        <h4 class="footer-title text-lg font-semibold mb-4">Newsletter</h4>
+        <p class="newsletter-desc text-sm mb-4">Subscribe to stay updated with the latest courses and news.</p>
+        <form class="newsletter-form flex flex-col space-y-3">
+          <input type="email" placeholder="Your email" class="newsletter-input px-4 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+          <button type="submit" class="newsletter-button heroSectionBtn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+            Subscribe
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom mt-12 text-center text-sm text-gray-500 dark:text-gray-500">
+      &copy; 2025 Sapienta. All rights reserved.
+    </div>
+  </footer>
+  <!-- Custom JS -->
+  <script src="../src/swiper/swiper-bundle.min.js"></script>
+  <script src="../src/js/main.js"></script>
+<script>
+ 
+</script>
+
+</body>
+</html>

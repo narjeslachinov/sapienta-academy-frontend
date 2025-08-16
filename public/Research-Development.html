@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sapienta</title>
+    <link rel="stylesheet" href="../src/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../src/swiper/swiper-bundle.min.css">
+    <link href="../dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="../src/css/font.css">
+</head>
+<body class="bg-light montserratFont text-base text-gray-700">
+  <!-- Sticky Navbar  -->
+  <header class="main-nav sticky top-0 z-50 w-full transition-all duration-500">
+      <div class="nav-inner w-full  bg-white bg-opacity-10  border border-white border-opacity-10 shadow-inner text-white rounded-b transition-all duration-300 ease-in-out">
+        <div class="flex justify-between items-center h-16 space-x-8 max-w-6xl mx-auto px-6 py-10">
+            <!-- desktop logo -->
+            <a href="./index.html" class="flex-1 text-xl font-bold logo-text"><img src="../src/imges/logo/sapieenta logo design-02.svg" class="w-32 mt-2 bg-white px-2 py-1 rounded-full" alt="logo"></a>
+            <!-- Desktop Menu -->
+            <div class="nav-menu hidden sm:flex items-center">
+                <div class="relative  space-x-6">
+                    <a href="./courses.html" class="nav-link primary-light-hover">Courses</a>
+                    <a href="./about.html" class="nav-link primary-light-hover">About Us</a>
+                    <a href="./contactUs.html" class="nav-link primary-light-hover">Contact Us</a>
+                    <a href="./Research-Development.html" class="nav-link primary-light-hover">R&D</a> 
+                    <a href="./blog.html" class="nav-link primary-light-hover">Blog</a>    
+                 </div>
+            </div>
+            <!-- Login Button (Desktop) -->
+            <div class="">
+              <button onclick="openLoginModal()" href="#" class="login-btn flex items-center space-x-2 text-white  transition primary-light-hover">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <span>Login</span>
+              </button>
+            </div>
+            <!-- Toggle button for mobile -->
+            <button class="menu-toggle sm:hidden text-2xl z-40 relative p-4 ">
+              <i class="fa-solid fa-bars text-white primary-light-hover text-2xl  transition"></i>
+            </button>
+            <!-- Fullscreen Mobile Menu -->
+            <div class="nav-menu-mobile fixed inset-0 h-screen z-40  hidden transition-all duration-500 ease-in-out opacity-0 scale-95">
+              <button class="menu-close absolute top-6 right-6 text-3xl">
+                  <i class="fa-solid fa-xmark text-white text-2xl  transition primary-light-hover"></i>
+              </button>
+              <div class="flex flex-col items-center justify-center space-y-6 text-white text-xl pt-12 overflow-scroll">
+                  <a href="./index.html" class="text-xl font-bold logo-text"><img src="../src/imges/logo/sapieenta logo design-02.svg" class="w-32 bg-white p-2 rounded-lg mb-8" alt="logo"></a>
+                  <a href="./courses.html" class="nav-link primary-light-hover">Courses</a>
+                  <a href="./about.html" class="nav-link primary-light-hover">About Us</a>
+                  <a href="./contactUs.html" class="nav-link primary-light-hover">Contact Us</a>
+                  <a href="./Research-Development.html" class="nav-link primary-light-hover">R&D</a> 
+                  <a href="./blog.html" class="nav-link primary-light-hover">Blog</a> 
+              </div>
+            </div>
+        </div> 
+      </div>
+      <!-- Modal Overlay and Box -->
+      <div id="login-modal-overlay" class="login-modal-overlay hidden fixed inset-0   flex justify-center items-center z-50 bg-black  pointer-events-none transition-opacity duration-300">
+          <!-- Modal Box -->
+          <div id="login-modal-box" class="login-modal-box relative bg-white rounded-2xl shadow-2xl overflow-auto  px-6 py-8 flex flex-col gap-6  scale-95 opacity-0 transition-all duration-300 ">
+          <!-- Close Modal Button -->
+          <button type="button"
+                  class="login-modal-close absolute left-4 top-3   text-2xl focus:outline-none"
+                  aria-label="Close modal"
+                  onclick="closeLoginModal()">
+              <i class="fa-solid fa-xmark primary-light-hover"></i>
+          </button>
+          <div class="flex  justify-center">
+              <button id="StudentForm" class="primaryBtn text-white px-2 py-1 rounded-l-full">Student</button>
+              <button id="InstructorForm" class="selectedBarItem px-2 py-1 rounded-r-full">Instructor</button>
+          </div>
+          <div id="studentloginForm" class="loginModal">
+              <!-- Modal Header -->
+              <div class="login-modal-header text-center">
+                  <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Student Login</h2>
+                  <p class="secondaryTitle text-sm">For Sapienta student users</p>
+              </div>
+
+              <!-- Login Form -->
+              <form class="login-modal-form flex flex-col gap-5" autocomplete="on">
+              <!-- Email Field -->
+              <div class="login-field">
+                  <label for="login-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4  text-lg">
+                      <i class="fa-solid fa-envelope text-red-400"></i>
+                  </span>
+                  <input id="login-email" name="email" type="email" required dir="ltr"
+                      placeholder="Enter your email"
+                      class="input-email-login py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2 "/>
+                  </div>
+              </div>
+              <!-- Password Field -->
+              <div class="login-field">
+                  <label for="login-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                      <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input id="login-password" name="password" type="password" required
+                      placeholder="Enter your password"
+                      class="input-password-login  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                  <!-- Show/hide password (Eye) -->
+                  <button type="button"
+                          tabindex="-1"
+                          class="login-show-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                          data-toggle="password">
+                      <i  class="fa-solid fa-eye"></i>
+                  </button>
+                  </div>
+              </div>
+
+              <!-- Remember Me & Forgot Password -->
+              <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                  <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                  <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                  <span>Remember</span>
+                  </label>
+                  <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline  transition">Forgot your password?</a>
+              </div>
+
+              <!-- Login Button -->
+              <button type="submit"
+                  class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                  Login
+              </button>
+              </form>        
+          </div>
+          <div id="studentSignupForm" class="SignupModal hidden">
+              <!-- Modal Header -->
+              <div class=" Signup-modal-header text-center">
+              <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Student Registration</h2>
+              <p class="secondaryTitle text-sm">Create your Sapienta student account</p>
+              </div>
+
+              <!-- Signup Form -->
+              <form class="Signup-modal-form flex flex-col gap-5" autocomplete="on">
+              <!-- Full Name Field -->
+              <div class="signup-field">
+                  <label for="signup-name" class="block secondaryTitle font-semibold mb-2">Full Name</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4 text-lg">
+                      <i class="fa-solid fa-user text-green-400"></i>
+                  </span>
+                  <input id="signup-name" name="name" type="text" required dir="ltr"
+                      placeholder="Enter your full name"
+                      class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2"/>
+                  </div>
+              </div>
+              <!-- Email Field -->
+              <div class="Signup-field">
+                  <label for="Signup-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4  text-lg">
+                      <i class="fa-solid fa-envelope text-red-400"></i>
+                  </span>
+                  <input id="Signup-email" name="email" type="email" required dir="ltr"
+                      placeholder="Enter your email"
+                      class="input-email-Signup py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2 "/>
+                  </div>
+              </div>
+              <!-- Password Field -->
+              <div class="Signup-field">
+                  <label for="Signup-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                      <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input id="Signup-password" name="password" type="password" required
+                      placeholder="Enter your password"
+                      class="input-password-Signup  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                  <!-- Show/hide password (Eye) -->
+                  <button type="button"
+                          tabindex="-1"
+                          class="Signup-show-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                          data-toggle="password">
+                      <i class="fa-solid fa-eye"></i>
+                  </button>
+                  </div>
+              </div>
+              <!--Confirm  Password Field -->
+              <div class="Signup-field">
+                  <label for="Signup-confirm-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                  <div class="relative rounded-lg shadow-sm">
+                  <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                      <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input id="Signup-confirm-password" name="password" type="password" required
+                      placeholder="Enter your password"
+                      class="input-confirm-password-Signup  py-2 pr-11 pl-3 w-full transition w-full border rounded-lg focus:outline-none focus:ring-2"/>
+                  <!-- Show/hide password (Eye) -->
+                  <button type="button"
+                          class="Signup-show-confirm-password absolute right-12 top-2  text-blue-200 transition text-xl"
+                          data-toggle="password">
+                      <i class="fa-solid fa-eye"></i>
+                  </button>
+                  </div>
+              </div>
+
+              <!-- Remember Me & Forgot Password -->
+              <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                  <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                  <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                  <span>Remember</span>
+                  </label>
+                  <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline  transition">Forgot your password?</a>
+              </div>
+
+              <!-- Login Button -->
+              <button type="submit"
+                  class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                  Signup
+              </button>
+              </form>        
+          </div>
+          <div id="instructorLoginForm" class="LoginModal hidden">
+              <div class="login-modal-header text-center">
+                  <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Instructor Login</h2>
+                  <p class="secondaryTitle text-sm">Access your instructor account</p>
+              </div>
+
+              <form class="login-modal-form flex flex-col gap-5" autocomplete="on">
+                  <div class="login-field">
+                      <label for="login-email-instructor" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-lg">
+                              <i class="fa-solid fa-envelope text-red-400"></i>
+                          </span>
+                          <input id="login-email-instructor" name="email" type="email" required dir="ltr"
+                              placeholder="Enter your email"
+                              class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                      </div>
+                  </div>
+
+                  <div class="login-field">
+                      <label for="login-password-instructor" class="block secondaryTitle font-semibold mb-2">Password</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                              <i class="fa-solid fa-lock"></i>
+                          </span>
+                          <input id="login-password-instructor" name="password" type="password" required
+                              placeholder="Enter your password"
+                              class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                          <button type="button" tabindex="-1"
+                              class="login-show-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                              data-toggle="password">
+                              <i  class="fa-solid fa-eye"></i>
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                      <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                          <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                          <span>Remember</span>
+                      </label>
+                      <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline transition">Forgot your password?</a>
+                  </div>
+
+                  <button type="submit"
+                      class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                      Login
+                  </button>
+              </form>
+          </div>
+          <div id="instructorSignupForm" class="SignupModal hidden">
+              <div class="Signup-modal-header text-center">
+                  <h2 class="text-xl md:text-2xl font-extrabold BlueTitle mb-2 mt-4">Sapienta Instructor Registration</h2>
+                  <p class="secondaryTitle text-sm">Create your Sapienta instructor account</p>
+              </div>
+
+              <form class="Signup-modal-form flex flex-col gap-5" autocomplete="on">
+                  <div class="signup-field">
+                      <label for="instructor-signup-name" class="block secondaryTitle font-semibold mb-2">Full Name</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-lg">
+                              <i class="fa-solid fa-user text-green-400"></i>
+                          </span>
+                          <input id="instructor-signup-name" name="name" type="text" required dir="ltr"
+                              placeholder="Enter your full name"
+                              class="py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                      </div>
+                  </div>
+
+                  <div class="Signup-field">
+                      <label for="instructor-signup-email" class="block secondaryTitle font-semibold mb-2">Email Address</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-lg">
+                              <i class="fa-solid fa-envelope text-red-400"></i>
+                          </span>
+                          <input id="instructor-signup-email" name="email" type="email" required dir="ltr"
+                              placeholder="Enter your email"
+                              class="input-email-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                      </div>
+                  </div>
+
+                  <div class="Signup-field">
+                      <label for="instructor-signup-password" class="block secondaryTitle font-semibold mb-2">Password</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                              <i class="fa-solid fa-lock"></i>
+                          </span>
+                          <input id="instructor-signup-password" name="password" type="password" required
+                              placeholder="Enter your password"
+                              class="input-password-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                          <button type="button" tabindex="-1"
+                              class="Signup-show-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                              data-toggle="password">
+                              <i class="fa-solid fa-eye"></i>
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="Signup-field">
+                      <label for="instructor-signup-confirm-password" class="block secondaryTitle font-semibold mb-2">Confirm Password</label>
+                      <div class="relative rounded-lg shadow-sm">
+                          <span class="absolute top-2 right-4 text-yellow-400 text-lg">
+                              <i class="fa-solid fa-lock"></i>
+                          </span>
+                          <input id="instructor-signup-confirm-password" name="confirm-password" type="password" required
+                              placeholder="Confirm your password"
+                              class="input-confirm-password-Signup py-2 pr-11 pl-3 w-full transition border rounded-lg focus:outline-none focus:ring-2" />
+                          <button type="button" tabindex="-1"
+                              class="Signup-show-confirm-password absolute right-12 top-2 text-blue-200 transition text-xl"
+                              data-toggle="password">
+                              <i  class="fa-solid fa-eye"></i>
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="login-row flex justify-between items-center mt-1 flex-wrap">
+                      <label class="remember-me-login flex items-center cursor-pointer gap-2 text-xs select-none">
+                          <input type="checkbox" class="accent-primary-color login-checkbox-remember h-4 w-4 rounded secondaryTitle" />
+                          <span>Remember</span>
+                      </label>
+                      <a href="#" onclick="alert('Password recovery not implemented in demo.')" class="login-forgot-link text-xs secondaryTitle font-semibold underline transition">Forgot your password?</a>
+                  </div>
+
+                  <button type="submit"
+                      class="login-btn-main primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+                      Signup
+                  </button>
+              </form>
+          </div>
+          <!-- OR Separator -->
+          <div class="login-separator flex items-center my-3 gap-3">
+              <div class="flex-1 border-b border-gray-200"></div>
+              <div class=" text-xs font-bold">Or continue</div>
+              <div class="flex-1 border-b border-gray-200"></div>
+          </div>
+
+          <!-- OAuth Login Buttons -->
+          <div class="login-oauth flex gap-4 flex-col sm:flex-row mt-2">
+              <button type="button"
+              class="login-btn-google flex-1 flex items-center gap-2 justify-center py-2 rounded-lg border border-gray-200 shadow-md text-gray-700 font-bold bg-white hover:bg-gray-50 hover:shadow-lg hover:scale-105 transition">
+              <img src="../src/imges/icon/google.png" class="w-8 h-8 ml-2 rounded-full" alt="Google">
+              <span>Continue with Google</span>
+              </button>
+              <button type="button"
+              class="login-btn-apple flex-1 flex items-center gap-2 justify-center py-2 rounded-lg border border-gray-200 shadow-md text-gray-700 font-bold bg-white hover:bg-gray-50 hover:shadow-lg hover:scale-105 transition">
+              <img src="../src/imges/icon/apple.jpg" class="w-8 h-8 ml-2 rounded-full" alt="Apple">
+              <span>Continue with Apple</span>
+              </button>
+          </div>
+
+          <!-- Sign Up Link -->
+          <div id="authSwitchText" class="login-register text-center mt-4">
+              <span id="authSwitchLabel" class="text-gray-600 text-sm">
+                  Don't have an account?
+                  <button id="authSwitchBtn" class="text-primary-color font-bold underline transition">Sign up</button>
+              </span>
+          </div>
+
+
+          <!-- Security Notice -->
+          <div class="login-secure-note flex items-center gap-2 justify-center mt-2 text-xs ">
+              <i class="fa-solid fa-shield-halved text-primary-color text-base"></i>
+              <span>Your information is encrypted and secure</span>
+          </div>
+          </div>
+      </div>
+  </header> 
+  <main>
+    <!-- Hero Section -->
+    <section class="heroSection relative w-full h-screen overflow-hidden bg-gray-900 text-white -mt-20">
+      <!-- Background image or video -->
+      <img src="../src/imges/banner.webp" alt="Hero background" class=" inset-0 w-full h-full object-cover opacity-40 z-0">
+      <!-- Overlay content -->
+      <div class="absolute inset-0  z-10 flex flex-col justify-center items-center h-full text-center px-6">
+          <h1 class="text-3xl md:text-4xl font-extrabold mb-4">Sapienta R&D – Advancing Learning Science</h1>
+        <p class="text-xl md:text-2xl my-6 max-w-2xl text-gray-100 font-bold">Where Curiosity Becomes Discovery</p>
+        <p id="animated-quote" class="text-lg md:text-xl mb-8 max-w-2xl text-gray-100"></p> 
+        <!-- CTA buttons for About Page -->
+        <div class="flex space-x-4">
+          <a href="#live-research-section" class="heroSectionBtn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+            Explore Research Highlights
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- What is Sapienta R&D -->
+    <section class="bg-gray-100 py-16 px-6" id="sapinta-rnd">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center xl:pb-10">
+        
+        <!-- Text Column -->
+        <div class=" text-justify">
+          <h2 class="text-xl md:text-2xl lg:text-3xl font-extrabold  mb-4 BlueTitle">Driving Innovation through R&D</h2>
+          <p class="text-gray-700 mb-6">
+            The Sapienta R&D Department is a collaborative space for educators, researchers, and anyone passionate about advancing learning. Here, ideas become action: we investigate, test, and refine strategies that shape the future of education. By partnering with our team, you can contribute directly to ongoing research or even suggest new areas of study—helping us explore how education can best serve the curiosity and independent thinking of every student.
+          </p>
+          
+          <h3 class="text-xl font-semibold secondaryTitle mb-2">Our Mission</h3>
+          <p class="text-gray-700 mb-4"> To build academic and curious characters in students—however their curiosity may take shape. Our research is dedicated to improving Sapienta’s ability to create the right environment for curiosity, critical thinking, and independent academic character to thrive.</p>
+          
+          <h3 class="text-xl font-semibold secondaryTitle mb-2">Strategic Role</h3>
+          <p class="text-gray-700 mb-6"> The R&D Department studies how to design learning environments where students dare to think, critique, disagree, and, above all, question. Through data-driven exploration and collaboration, we ensure Sapienta’s teaching methods and resources continually evolve to meet this vision.</p>
+          
+        </div>
+        
+        <!-- Image Column -->
+        <div class="flex justify-center">
+          <img src="../src/imges/gifs/WebDevelopment.gif" alt="Sapinta R&D Lab" class="w-full max-w-md " >
+        </div>
+      </div>
+    </section>
+    <!-- Key Functions with Icons -->
+    <section class=" xl:-mt-20 grid grid-cols-2 xl:grid-cols-5  justify-between items-center gap-8 xl:h-32 max-w-6xl mx-auto py-12 px-6 xl:py-0">
+      <div class="text-center selectedFilteringTags p-3 rounded-lg xl:h-32">
+        <i class="fa-solid fa-flask"></i>
+        <div>Research on modern pedagogy</div>
+      </div>
+      <div class="text-center selectedFilteringTags p-3 rounded-lg xl:h-32">
+        <i class="fa-solid fa-laptop-code"></i>
+        <div>Development of digital learning tools</div>
+      </div>
+      <div class="text-center selectedFilteringTags p-3 rounded-lg xl:h-32">
+        <i class="fa-solid fa-chart-line"></i>
+        <div>Data-driven curriculum optimization</div>
+      </div>
+      <div class="text-center selectedFilteringTags p-3 rounded-lg xl:h-32">
+        <i class="fa-solid fa-handshake"></i>
+        <div>Collaboration with academic experts</div>
+      </div>
+      <div class="text-center selectedFilteringTags p-3 rounded-lg xl:h-32">
+        <i class="fa-solid fa-bullseye"></i>
+        <div>Innovation in assessment methods</div>
+      </div>
+    </section>
+
+    <!-- Why It Matters -->
+    <section class="why-it-matters-section bg-white py-16 px-6 xl:mt-20">
+      <div class="why-it-matters-container max-w-6xl mx-auto">
+        <!-- Headline -->
+        <h2 class="why-it-matters-title text-xl md:text-2xl lg:text-3xl font-extrabold BlueTitle mb-4 text-center">
+          Why Sapienta R&D Matters
+        </h2>
+        <p class="why-it-matters-subtitle text-lg text-center mb-12">
+           Our Research & Development department is the heartbeat of Sapienta’s methodology. It ensures our academy is always evolving—adapting to new findings, listening to feedback from students and collaborators, and refining our practices in real time. We don’t claim to have a fixed “perfect” system; instead, we commit to a living & evolving approach where our methods and resources are always improving. This is, at its core, what an stand for: the constant pursuit of better understanding.
+        </p>
+
+        <!-- R&D Flowchart -->
+        <div class="rnd-flowchart mb-16">
+          <h3 class="flowchart-title text-2xl font-bold BlueTitle mb-8 text-center">Our R&D Flow</h3>
+          <div class="flowchart-steps flex flex-col md:flex-row justify-center items-center gap-6">
+            <div class="flowchart-step flex flex-col items-center scale1 ">
+              <i class="fa-solid fa-microscope text-orange-400 text-3xl mb-2"></i>
+              <p class="flowchart-label text-gray-700">Research</p>
+            </div>
+            <i class="fa-solid fa-arrow-right text-gray-400"></i>
+            <div class="flowchart-step flex flex-col items-center scale1 ">
+              <i class="fa-solid fa-chart-line text-orange-400 text-3xl mb-2"></i>
+              <p class="flowchart-label text-gray-700">Analysis</p>
+            </div>
+            <i class="fa-solid fa-arrow-right text-gray-400"></i>
+            <div class="flowchart-step flex flex-col items-center scale1 ">
+              <i class="fa-solid fa-flask text-orange-400 text-3xl mb-2"></i>
+              <p class="flowchart-label text-gray-700">Pilot Program</p>
+            </div>
+            <i class="fa-solid fa-arrow-right text-gray-400"></i>
+            <div class="flowchart-step flex flex-col items-center scale1 ">
+              <i class="fa-solid fa-rocket text-orange-400 text-3xl mb-2"></i>
+              <p class="flowchart-label text-gray-700">Implementation</p>
+            </div>
+            <i class="fa-solid fa-arrow-right text-gray-400"></i>
+            <div class="flowchart-step flex flex-col items-center scale1 ">
+              <i class="fa-solid fa-chart-bar text-orange-400 text-3xl mb-2"></i>
+              <p class="flowchart-label text-gray-700">Outcomes</p>
+            </div>
+          </div>
+        </div>
+
+    </section>
+    <!-- Live Research Highlights -->
+    <section id="live-research-section" class="live-research-section py-16 px-6 bg-gray-100 text-gray-800 scroll-marginTop1">
+      <div class="live-research-container max-w-6xl mx-auto">
+        <h2 class="live-research-title text-xl md:text-2xl lg:text-3xl font-bold mb-8 text-center BlueTitle">Live Research Projects</h2>
+        <p class="text-lg text-center mb-12">
+            Our research is never hidden behind closed doors. On this page, you can explore a selection of active studies led by Sapienta’s R&D team and our network of contributors. Each project is designed to answer real questions about how students learn best, how curiosity can be nurtured, and how independent academic character can be strengthened. Even without logging in, you can follow along with our progress, see who’s leading the work, and understand the questions driving each study.
+        </p>
+        <div class="live-research-grid grid md:grid-cols-3 gap-6">
+          
+          <!-- Research Card -->
+          <div class="research-card border rounded-xl p-6 shadow-sm bg-white text-gray-700">
+              <img src="../src/imges/math.webp" alt="Course Image" class="research-card-img mb-4 w-full h-48 object-cover transition-transform duration-500 ease-in-out ">
+            <h3 class="research-title font-semibold text-xl mb-2 line-clamp-2 ">
+              Structured Dialogue and Concept Retention
+            </h3>
+            <p class="research-description text-sm mb-4 line-clamp-4 ">
+              Exploring how structured dialogue improves concept retention.
+              Exploring how structured dialogue improves concept retention.
+              Exploring how structured dialogue improves concept retention.
+              Exploring how structured dialogue improves concept retention.
+              Exploring how structured dialogue improves concept retention.
+            </p>
+            <div class="research-lead mb-2 text-xs text-gray-500">
+              Lead Researcher: <span class="font-bold text-sm">Dr. A. Smith</span>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar-wrapper w-full bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-orange-400 h-2 rounded-full w-2/3"></div>
+            </div>
+            <div class="progress-text text-right text-xs mt-1">
+              66% complete
+            </div>
+          </div>
+          <!-- Research Card -->
+          <div class="research-card border rounded-xl p-6 shadow-sm bg-white text-gray-700">
+              <img src="../src/imges/math.webp" alt="Course Image" class="research-card-img mb-4 w-full h-48 object-cover transition-transform duration-500 ease-in-out ">
+            <h3 class="research-title font-semibold text-xl mb-2 line-clamp-2 ">
+              Dialog-Based Learning
+            </h3>
+            <p class="research-description text-sm mb-4 line-clamp-4 ">
+              Exploring how structured dialogue improves concept retention.
+            </p>
+            <div class="research-lead mb-2 text-xs text-gray-500">
+              Lead Researcher: <span class="font-bold text-sm">Dr. A. Smith</span>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar-wrapper w-full bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-orange-400 h-2 rounded-full w-2/3"></div>
+            </div>
+            <div class="progress-text text-right text-xs mt-1">
+              66% complete
+            </div>
+          </div>
+          <!-- Research Card -->
+          <div class="research-card border rounded-xl p-6 shadow-sm bg-white text-gray-700">
+              <img src="../src/imges/math.webp" alt="Course Image" class="research-card-img mb-4 w-full h-48 object-cover transition-transform duration-500 ease-in-out ">
+            <h3 class="research-title font-semibold text-xl mb-2 line-clamp-2 ">
+              Dialog-Based Learning
+            </h3>
+            <p class="research-description text-sm mb-4 line-clamp-4 ">
+              Exploring how structured dialogue improves concept retention.
+            </p>
+            <div class="research-lead mb-2 text-xs text-gray-500">
+              Lead Researcher: <span class="font-bold text-sm">Dr. A. Smith</span>
+            </div> 
+            <!-- Progress Bar -->
+            <div class="progress-bar-wrapper w-full bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-orange-400 h-2 rounded-full w-2/3"></div>
+            </div>
+            <div class="progress-text text-right text-xs mt-1">
+              66% complete
+            </div>
+          </div>
+          <!-- Research Card -->
+          <div class="research-card border rounded-xl p-6 shadow-sm bg-white text-gray-700">
+              <img src="../src/imges/math.webp" alt="Course Image" class="research-card-img mb-4 w-full h-48 object-cover transition-transform duration-500 ease-in-out ">
+            <h3 class="research-title font-semibold text-xl mb-2 line-clamp-2 ">
+              Dialog-Based Learning
+            </h3>
+            <p class="research-description text-sm mb-4 line-clamp-4 ">
+              Exploring how structured dialogue improves concept retention.
+            </p>
+            <div class="research-lead mb-2 text-xs text-gray-500">
+              Lead Researcher: <span class="font-bold text-sm">Dr. A. Smith</span>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar-wrapper w-full bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-orange-400 h-2 rounded-full w-2/3"></div>
+            </div>
+            <div class="progress-text text-right text-xs mt-1">
+              66% complete
+            </div>
+          </div>
+          <!-- Research Card -->
+          <div class="research-card border rounded-xl p-6 shadow-sm bg-white text-gray-700">
+              <img src="../src/imges/math.webp" alt="Course Image" class="research-card-img mb-4 w-full h-48 object-cover transition-transform duration-500 ease-in-out ">
+            <h3 class="research-title font-semibold text-xl mb-2 line-clamp-2 ">
+              Dialog-Based Learning
+            </h3>
+            <p class="research-description text-sm mb-4 line-clamp-4 ">
+              Exploring how structured dialogue improves concept retention.
+            </p>
+            <div class="research-lead mb-2 text-xs text-gray-500">
+              Lead Researcher: <span class="font-bold text-sm">Dr. A. Smith</span>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar-wrapper w-full bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-orange-400 h-2 rounded-full w-2/3"></div>
+            </div>
+            <div class="progress-text text-right text-xs mt-1">
+              66% complete
+            </div>
+          </div>
+          <!-- Research Card -->
+          <div class="research-card border rounded-xl p-6 shadow-sm bg-white text-gray-700">
+              <img src="../src/imges/math.webp" alt="Course Image" class="research-card-img mb-4 w-full h-48 object-cover transition-transform duration-500 ease-in-out ">
+            <h3 class="research-title font-semibold text-xl mb-2 line-clamp-2 ">
+              Dialog-Based Learning
+            </h3>
+            <p class="research-description text-sm mb-4 line-clamp-4 ">
+              Exploring how structured dialogue improves concept retention.
+            </p>
+            <div class="research-lead mb-2 text-xs text-gray-500">
+              Lead Researcher: <span class="font-bold text-sm">Dr. A. Smith</span>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar-wrapper w-full bg-gray-200 rounded-full h-2">
+              <div class="progress-bar bg-orange-400 h-2 rounded-full w-2/3"></div>
+            </div>
+            <div class="progress-text text-right text-xs mt-1">
+              66% complete
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+    <!-- Educator Engagement Portal -->
+    <section class="educator-portal-section py-16 px-6">
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-extrabold BlueTitle mb-5 text-center">Join the R&D Learning Community</h2>
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+        <!-- Signup + Info -->
+        <div class="signup-box bg-white shadow-lg rounded-xl p-8 shadow hover:shadow-2xl transition-shadow  bg-gray-100">
+          <h3 class="font-bold text-2xl mb-3 BlueTitle">Educator Engagement Portal</h3>
+          <p class="mb-6 text-gray-700">
+            Verified educators with <span class="font-semibold ">.edu</span> email addresses can sign up to collaborate, provide feedback, and shape future tools.
+          </p>
+          <form class="mb-4">
+            <label for="edu-email" class="block text-gray-800 mb-2 font-semibold">.edu Email Address</label>
+            <input id="edu-email" type="email"  placeholder="yourname@university.edu"
+              class="w-full border  rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary-color mb-4">
+            <button type="submit" class=" primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+              Sign Up & Collaborate
+            </button>
+          </form>
+          <p class="text-xs text-gray-500 mb-2">* Open to current educators, academic researchers, and verified contributors only.</p>
+        </div>
+        <!-- Current Contributor Preview -->
+        <div class="relative contributor-profile-box gradientBtn1 rounded-xl p-8 flex flex-col items-center justify-center shadow hover:shadow-2xl transition-shadow text-gray-700 space-y-5 mt-16">
+          <div class="absolute -top-20 md:-top-16 w-32 h-32 rounded-full overflow-hidden bg-gray-300 ">
+            <img src="../src/imges/profile.webp" alt="Contributor Profile" class="w-full h-full object-cover rounded-ful">
+          </div>
+          <div class="font-bold text-xl BlueTitle ">Dr. Olivia Reynolds</div>
+          <div class=" text-sm ">History Educator, Sapienta Partner</div>
+          <ul class="text-xs space-y-1  text-left w-full px-2">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-300 mt-0.5"></i> Expert reviewer for Meta History</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-300 mt-0.5"></i> Forum Top Contributor, 2024</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-300 mt-0.5"></i> Leads collaborative “Dialog Innovations” group</li>
+          </ul>
+          <span class="px-3 py-1 rounded-full bg-primary-color text-white text-xs  font-semibold text-green-500">Verified Contributor</span>
+        </div>
+      </div>
+    </section>
+    <!-- Contributor Benefits -->
+    <section class="contributor-benefits-section py-16 px-6 bg-gray-100 text-gray-700">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-xl md:text-2xl lg:text-3xl font-extrabold BlueTitle mb-5 text-center"> Contributor Benefits</h2>
+        <p class="mb-10 text-center text-lg">
+           Anyone with a passion for learning and a desire to push the boundaries of education is welcome to contribute to Sapienta’s R&D projects. Whether you’re an educator, researcher, student, or simply an engaged thinker, you can join our efforts. All contributions are reviewed by the R&D department to ensure quality, relevance, and integrity—helping maintain the high standards that shape our work. Together, we’re building an intellectual community driven by curiosity and the pursuit of better learning.
+        </p>
+        <div class="benefits-list grid grid-cols-1 md:grid-cols-2 gap-8">
+        <ul class="infographic-list space-y-6 py-6 pr-4">
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-archive text-red-400 scale1 text-2xl"></i>
+            <span>
+              <span class="font-bold">Access to our growing research archive.</span>
+            </span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-users-cog text-yellow-300 scale1 text-2xl"></i>
+            <span>
+              <span class="font-bold">Participate in shared topic threads and focused discussion forums.</span>
+            </span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-message text-green-300 scale1 text-2xl"></i>
+            <span>
+              <span class="font-bold">Connect directly with peers and project leads through messaging.</span>
+            </span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-file-signature text-purple-400 scale1 text-2xl"></i>
+            <span>
+              <span class="font-bold">Opportunities to co-author and publish findings.</span>
+            </span>
+          </li>
+          <li class="flex items-center gap-3">
+            <i class="fa-solid fa-lightbulb text-blue-400 scale1 text-2xl"></i>
+            <span>
+              <span class="font-bold">Play a role in shaping the questions and ideas we investigate next.</span>
+            </span>
+          </li>
+        </ul>
+
+        <div class="benefits-infographic rounded-xl bg-gradient-to-br from-primary-verylight-color to-secondary-light-color  p-8 h-full flex flex-col items-center justify-center">
+          <img src="../src/imges/math.webp" alt="Benefits Infographic" class="w-48 h-48 object-contain mb-4 rounded-2xl">
+          <div class="font-bold text-lg  text-center mt-3">
+            Advance your career, expand your impact, and join a vibrant educator community!
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <!-- Get Involved CTA -->
+    <section class="RandD-cta-section  py-16 text-white">
+      <div class="cta-container max-w-5xl mx-auto px-6 text-center">
+        <!-- Title -->
+        <h2 class="cta-title text-3xl sm:text-4xl font-extrabold mb-6">
+          Ready to Shape the Future of Learning?
+        </h2>
+        <p class="mb-10 text-center text-lg">
+          The next breakthrough in education might start with your question, your insight, or your idea. At Sapienta, we believe progress comes from many voices working together—questioning, challenging, and building on each other’s thinking. If you’re ready to explore, contribute, and be part of a living, evolving community of curious minds, we’d love to have you join us.        </p>
+        <!-- CTA Button -->
+        <a href="/signup" class="cta-button secondaryBtn HoversecondaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+          Join a Research Project
+        </a> 
+      </div>
+    </section>  
+    <!-- chat box btn -->
+    <button id="openDialoge" class="fixed bottom-4 left-4 z-40 shadow-xl rounded-full flex items-center justify-center bg-white">
+      <img src="../src/imges/logo/sapieenta logo design-03.svg" alt="" class="p-2  w-16 h-16">
+    </button>
+    <!-- chat box -->
+     <section id="chatBox" class="fixed top-0 sm:top-28 left-0 sm:left-16  rounded-lg w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 z-40 text-sm  z-50 hidden transition duration-700 overfow-hidden">
+        <section class=" relative h-full">
+            <div class="chatBoxHeader flex justify-between items-center py-2 px-4">
+                <h3 class="text-white">
+                    Sapinto Educational Assistant
+                </h3>
+                <div id="closeDialoge" class="text-white scale1 transition text-xl">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+            </dv>
+            <div class="chatBoxBody no-scrollbar flex flex-col gap-4 absolute right-0 left-0 top-20 px-4 text-xs">
+                <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">Hellow</div>
+                <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellow    </div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="dialogeText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellow</div>
+                <div class="customerText p-3 relative inline-block break-words rounded-3xl text-white">HellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellowHellow    </div>
+            </div> 
+            <div class="chatBoxFooter w-full absolute bottom-0 left-0 rounded-md px-4 py-2 flex  gap-2 justify-between items-center z-50">
+                <!-- send-->
+                <button id="sendBtn" class="hidden cursor-pointer  text-lg">
+                    <i class="fa-solid fa-paper-plane text-blue-700"></i>
+                </button>
+                <div>
+                    <input type="file" id="file" class="file-upload hidden">
+                    <label  id="fileBtn" for="file" class="upload-label transition duration-300">
+                        <i class="fa-solid fa-paperclip cursor-pointer text-lg"></i>
+                    </label>
+                </div>
+                <input id="messageInput"  rows="1" placeholder="Type a message..." class="flex-1 w-full rounded p-1 border-none  focus:outline-none focus:ring-2">
+                <button id="recordBtn" >
+                    <i class="fa-solid fa-microphone cursor-pointer  text-lg"></i>
+                </button>
+                
+                <!-- timer -->
+                <span id="timer" class="hidden flex-1 text-center">00:00</span>
+
+                <!-- delete-->
+                <button id="deleteBtn" class="hidden cursor-pointer  text-lg ">
+                    <i class="fa-solid fa-trash text-red-500"></i>
+                </button>
+            </div>
+        </section>
+
+     </section>
+  </main>
+  <!-- Footer -->
+  <footer class="footer bg-gray-100  text-gray-700  pt-16 pb-8">
+    <div class="footer-container max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+
+      <!-- Logo & Contact -->
+      <div class="footer-logo-contact">
+        <a href="#" class="footer-logo text-2xl font-bold text-sky-700 dark:text-sky-400">Sapienta</a>
+        <p class="footer-desc mt-4 text-sm leading-relaxed">
+          Empowering learning through expert-led courses and transformative research.
+        </p>
+        <p class="footer-email mt-4 text-sm">
+          <i class="fa-solid fa-envelope text-blue-600 mr-2"></i> contact@sapienta.com
+        </p>
+        <p class="footer-location text-sm">
+          <i class="fa-solid fa-location-dot text-red-500 mr-2"></i> Berlin, Germany
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h4 class="footer-title text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="footer-list space-y-2">
+          <li><a href="./courses.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-graduation-cap text-purple-600 mr-2"></i>Courses</a></li>
+          <li><a href="./about.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-users text-green-600 mr-2"></i>About Us</a></li>
+          <li><a href="./contactUs.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-envelope-open-text text-blue-500 mr-2"></i>Contact</a></li>
+          <li><a href="./Research-Development.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-flask text-pink-500 mr-2"></i>Research</a></li>
+          <li><a href="./blog.html" target="_blank" class="footer-link hover: transition"><i class="fa-solid fa-blog text-yellow-500 mr-2"></i>Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div class="footer-social">
+        <h4 class="footer-title text-lg font-semibold mb-4">Follow Us</h4>
+        <div class="social-icons flex space-x-4">
+          <a href="https://facebook.com" target="_blank" class="social-link hover: transition">
+            <i class="fab fa-facebook-f text-blue-600 text-lg"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-link hover: transition">
+            <i class="fab fa-twitter text-sky-400 text-lg"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="social-link hover: transition">
+            <i class="fab fa-linkedin-in text-blue-700 text-lg"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-link hover: transition">
+            <i class="fab fa-instagram text-pink-500 text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="footer-newsletter">
+        <h4 class="footer-title text-lg font-semibold mb-4">Newsletter</h4>
+        <p class="newsletter-desc text-sm mb-4">Subscribe to stay updated with the latest courses and news.</p>
+        <form class="newsletter-form flex flex-col space-y-3">
+          <input type="email" placeholder="Your email" class="newsletter-input px-4 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+          <button type="submit" class="newsletter-button heroSectionBtn primaryBtn HoverPrimaryBtn text-white px-6 py-3 rounded-lg font-semibold transition">
+            Subscribe
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom mt-12 text-center text-sm text-gray-500 dark:text-gray-500">
+      &copy; 2025 Sapienta. All rights reserved.
+    </div>
+  </footer>
+  <script src="../src/swiper/swiper-bundle.min.js"></script>
+  <script src="../src/js/main.js"></script>
+</body>
+</html>
